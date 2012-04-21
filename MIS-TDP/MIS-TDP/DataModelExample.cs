@@ -17,16 +17,16 @@ namespace MIS_TDP
     {
 
         #region properties
-        private String TitleValue = default(string);
-        public string Title
+        private String NameValue = default(string);
+        public string Name
         {
             get
             {
-                return TitleValue;
+                return NameValue;
             }
             set
             {
-                TitleValue = value;
+                NameValue = value;
 
             }
         }

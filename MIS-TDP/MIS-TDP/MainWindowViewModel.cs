@@ -27,9 +27,9 @@ namespace MIS_TDP
         private void loadTestData()
         {
             items = new ObservableCollection<DataModelExample>();
-            items.Add(new DataModelExample { Title = "Title1", Content = "Content1" });
-            items.Add(new DataModelExample { Title = "Title2", Content = "Content2" });
-            items.Add(new DataModelExample { Title = "Title3", Content = "Content3" });
+            items.Add(new DataModelExample { Name = "Title1", Content = "Content1" });
+            items.Add(new DataModelExample { Name = "Title2", Content = "Content2" });
+            items.Add(new DataModelExample { Name = "Title3", Content = "Content3" });
         }
         #endregion 
 

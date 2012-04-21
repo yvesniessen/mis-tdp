@@ -16,8 +16,10 @@ namespace MIS_TDP
     public partial class MainPage : PhoneApplicationPage
     {
         #region Contructor
+        MainWindowViewModel mvm;
         public MainPage()
         {
+            mvm = new MainWindowViewModel();
             InitializeComponent();
         }
         #endregion
