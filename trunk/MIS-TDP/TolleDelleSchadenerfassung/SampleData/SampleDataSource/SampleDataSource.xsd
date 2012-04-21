@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+      *********    DIESE DATEI DARF NICHT GEÄNDERT WERDEN     *********
+      Diese Datei wurde von einem Designwerkzeug erstellt. Änderungen
+      dieser Datei können Fehler verursachen.
+-->
+<xs:schema xmlns:tns="Expression.Blend.SampleData.SampleDataSource" xmlns:blend="http://schemas.microsoft.com/expression/blend/2008" targetNamespace="Expression.Blend.SampleData.SampleDataSource" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SampleDataSource" type="tns:SampleDataSource" />
+  <xs:complexType name="SampleDataSource">
+    <xs:sequence>
+      <xs:element name="Versicherter" type="tns:Versicherter" />
+      <xs:element name="Fabrikat" type="tns:Fabrikat" />
+      <xs:element name="Versicherung" type="tns:Versicherung" />
+      <xs:element name="Auftrag" type="tns:Auftrag" />
+      <xs:element name="Dateien" type="tns:Dateien" />
+      <xs:element name="Kraftfahrzeuge" type="tns:Kraftfahrzeuge" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Versicherter">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="VersicherterItem" type="tns:VersicherterItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VersicherterItem">
+    <xs:attribute blend:FormatParameters="10" name="Versichertennummer" type="xs:double" />
+    <xs:attribute blend:FormatParameters="1,12" name="Name" type="xs:string" />
+    <xs:attribute blend:FormatParameters="1,9" name="Vorname" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Fabrikat">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="FabrikatItem" type="tns:FabrikatItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FabrikatItem">
+    <xs:attribute name="Bezeichnung" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Versicherung">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="VersicherungItem" type="tns:VersicherungItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VersicherungItem">
+    <xs:attribute name="Versicherungsnummer" type="xs:double" />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Auftrag">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="AuftragItem" type="tns:AuftragItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AuftragItem">
+    <xs:attribute blend:FormatParameters="10" name="Auftragsnummer" type="xs:double" />
+    <xs:attribute blend:Format="Datum" name="Datum" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Dateien">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="DateienItem" type="tns:DateienItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateienItem">
+    <xs:attribute name="Dateiname" type="xs:string" />
+    <xs:attribute name="Objekt" type="tns:Basic-Image" />
+  </xs:complexType>
+  <xs:simpleType name="Basic-Image">
+    <xs:restriction base="xs:anyURI" />
+  </xs:simpleType>
+  <xs:complexType name="Kraftfahrzeuge">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="KraftfahrzeugeItem" type="tns:KraftfahrzeugeItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="KraftfahrzeugeItem">
+    <xs:attribute name="Kennzeichen" type="xs:string" />
+    <xs:attribute blend:Format="Name" name="Halter" type="xs:string" />
+  </xs:complexType>
+</xs:schema>
