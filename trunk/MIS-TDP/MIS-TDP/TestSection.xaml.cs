@@ -10,17 +10,21 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.Collections.ObjectModel;
 
 namespace MIS_TDP
 {
     public partial class TestSection : PhoneApplicationPage
     {
-        MainWindowViewModel mvm;
+        MainWindowViewModel mvm = new MainWindowViewModel();
         public TestSection()
         {
-            mvm = new MainWindowViewModel();
+            ObservableCollection<DataModelExample> testData = new ObservableCollection<DataModelExample>();
+            testData.Add(new DataModelExample { Name = "Name1" });
+            testData.Add(new DataModelExample { Name = "Name2" });
+
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
+
         }
     }
 }

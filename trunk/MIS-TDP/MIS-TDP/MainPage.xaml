@@ -34,6 +34,15 @@
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid  x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <HyperlinkButton Content="TestSection" Height="30" HorizontalAlignment="Left" Margin="28,25,0,0" Name="hyperlinkButton1" VerticalAlignment="Top" Width="200" Click="hyperlinkButton1_Click" />
+            <ListBox ItemsSource="{Binding testData }" Height="223" HorizontalAlignment="Left" Margin="6,78,0,0" Name="listBox1" VerticalAlignment="Top" Width="460" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
     </Grid>
  

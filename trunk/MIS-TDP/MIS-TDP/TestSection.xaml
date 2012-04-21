@@ -13,12 +13,25 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True"    >
+	<phone:PhoneApplicationPage.Resources>
+		<DataTemplate x:Key="DataModelExampleTemplate">
+			<StackPanel>
+				<TextBlock Text="{Binding Content}"/>
+				<TextBlock Text="{Binding Title}"/>
+			</StackPanel>
+		</DataTemplate>
+		<DataTemplate x:Key="DataModelExampleTemplate1">
+			<StackPanel>
+				<TextBlock Text="{Binding Content}"/>
+			</StackPanel>
+		</DataTemplate>
+	</phone:PhoneApplicationPage.Resources>
     
     
 
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{d:DesignData /SampleData/MainWindowViewModelSampleData.xaml}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -32,7 +45,7 @@
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox   Height="571" HorizontalAlignment="Left" Margin="-4,6,0,0" Name="listBox1" VerticalAlignment="Top" Width="460" />
+            <ListBox   Height="571" HorizontalAlignment="Left" Margin="-4,6,0,0" Name="listBox1" VerticalAlignment="Top" Width="460" ItemTemplate="{StaticResource DataModelExampleTemplate1}" ItemsSource="{Binding Items, Mode=TwoWay}" />
         </Grid>
     </Grid>
  
