@@ -13,20 +13,14 @@ using Microsoft.Phone.Controls;
 
 namespace MIS_TDP
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class TestSection : PhoneApplicationPage
     {
-        #region Contructor
-        public MainPage()
+        MainWindowViewModel mvm;
+        public TestSection()
         {
+            mvm = new MainWindowViewModel();
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
         }
-        #endregion
-
-        #region react to gui events
-        private void hyperlinkButton1_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/TestSection.xaml", UriKind.Relative));
-        }
-        #endregion
     }
 }

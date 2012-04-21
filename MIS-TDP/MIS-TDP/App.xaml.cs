@@ -28,6 +28,11 @@ namespace MIS_TDP
         /// </summary>
         public App()
         {
+            /**
+            // Klassen instanzieren
+            MainWindowViewModel mwvm = new MainWindowViewModel();
+            **/
+
             // Globaler Handler für nicht abgefangene Ausnahmen. 
             UnhandledException += Application_UnhandledException;
 
