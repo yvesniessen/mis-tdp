@@ -67,29 +67,29 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModelBase.cs" />
-    <Compile Include="DataModelExample.cs" />
-    <Compile Include="DelegateCommand.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="DataModel\DataModelBase.cs" />
+    <Compile Include="DataModel\DataModelExample.cs" />
+    <Compile Include="DelegatesAndCommands\DelegateCommand.cs" />
+    <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestSection.xaml.cs">
+    <Compile Include="View\TestSection.xaml.cs">
       <DependentUpon>TestSection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModelBase.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="View\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestSection.xaml">
+    <Page Include="View\TestSection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -99,13 +99,13 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationIcon.png">
+    <Content Include="Ressourcen\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Background.png">
+    <Content Include="Ressourcen\Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SplashScreenImage.jpg" />
+    <Content Include="Ressourcen\SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <DesignData Include="SampleData\MainWindowViewModelSampleData.xaml">

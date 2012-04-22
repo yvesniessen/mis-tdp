@@ -1,0 +1,14 @@
+<MIS_TDP:MainWindowViewModel xmlns:MIS_TDP="clr-namespace:MIS_TDP" Data="Curabitur vestibulum adipiscing parturient class" IsDesignTime="True">
+	<MIS_TDP:MainWindowViewModel.Items>
+		<MIS_TDP:DataModelExample Content="Aenean nam mauris vestibulum cras" Title="Nullam sed phasellus maecenas dis"/>
+		<MIS_TDP:DataModelExample Content="Duis consequat curae donec etiam" Title="Convallis est aliquam"/>
+		<MIS_TDP:DataModelExample Content="Hac fusce leo" Title="Integer quisque"/>
+		<MIS_TDP:DataModelExample Content="Praesent nunc aptent" Title="Auctor lorem vestibulum congue vivamus"/>
+		<MIS_TDP:DataModelExample Content="Amet morbi" Title="Dignissim accumsan bibendum"/>
+		<MIS_TDP:DataModelExample Content="Nulla aliquam" Title="Mus ante aliquet proin arcu"/>
+		<MIS_TDP:DataModelExample Content="Cursus blandit elementum diam" Title="Nec augue"/>
+		<MIS_TDP:DataModelExample Content="Adipiscing facilisis" Title="Dictum parturient dictumst dolor vestibulum"/>
+		<MIS_TDP:DataModelExample Content="Lectus eleifend fermentum" Title="Facilisi non faucibus"/>
+		<MIS_TDP:DataModelExample Content="Vestibulum eget libero" Title="Per commodo ligula habitant inceptos"/>
+	</MIS_TDP:MainWindowViewModel.Items>
+</MIS_TDP:MainWindowViewModel>
