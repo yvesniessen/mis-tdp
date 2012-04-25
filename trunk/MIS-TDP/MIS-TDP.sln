@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MIS-TDP", "MIS-TDP\MIS-TDP.csproj", "{C6902CAF-700E-4487-BF36-DDF52A75C75D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TolleDelleSchadenerfassung", "TolleDelleSchadenerfassung\TolleDelleSchadenerfassung.csproj", "{B755FDA2-1ADC-4504-9836-68663AFDA0AF}"
-EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -21,12 +19,6 @@ Global
 		{C6902CAF-700E-4487-BF36-DDF52A75C75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6902CAF-700E-4487-BF36-DDF52A75C75D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6902CAF-700E-4487-BF36-DDF52A75C75D}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{B755FDA2-1ADC-4504-9836-68663AFDA0AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B755FDA2-1ADC-4504-9836-68663AFDA0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B755FDA2-1ADC-4504-9836-68663AFDA0AF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{B755FDA2-1ADC-4504-9836-68663AFDA0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B755FDA2-1ADC-4504-9836-68663AFDA0AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B755FDA2-1ADC-4504-9836-68663AFDA0AF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

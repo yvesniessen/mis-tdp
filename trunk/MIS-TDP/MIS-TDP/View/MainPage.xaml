@@ -1,61 +1,84 @@
-﻿<phone:PhoneApplicationPage 
+﻿<phone:PhoneApplicationPage
     x:Class="MIS_TDP.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:MIS_TDP"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    
+	FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	Foreground="{StaticResource PhoneForegroundBrush}"
+	Orientation="Portrait"
+	shell:SystemTray.IsVisible="True">
 
+	<!--Das LayoutRoot-Objekt ist das Stammraster, das den gesamten Seiteninhalt aufnimmt.-->
+	<Grid x:Name="LayoutRoot" Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<!--Das TitlePanel-Objekt enthält den Namen der Anwendung und den Seitentitel.-->
+		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+			<TextBlock x:Name="ApplicationTitle" Text="TOLLE DELLE" Style="{StaticResource PhoneTextNormalStyle}"/>
+			<TextBlock x:Name="PageTitle" Text="schadenerfassung" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48"/>
+		</StackPanel>
 
-
-
-
-    <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-        <StackPanel  x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MEINE ANWENDUNG" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Seitenname" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
-
-        <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
-        <Grid  x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <HyperlinkButton Content="TestSection" Height="30" HorizontalAlignment="Left" Margin="28,25,0,0" Name="hyperlinkButton1" VerticalAlignment="Top" Width="200" Click="hyperlinkButton1_Click" />
-            <ListBox ItemsSource="{Binding testData }" Height="223" HorizontalAlignment="Left" Margin="6,78,0,0" Name="listBox1" VerticalAlignment="Top" Width="460" >
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Path=Name}"></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+		<!--ContentPanel-Objekt - Fügen Sie zusätzlichen Inhalt hier ein.-->
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,54,0">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Button Content="Aufträge" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="210" Height="210" VerticalContentAlignment="Bottom" Padding="10,3,10,4" BorderThickness="0" BorderBrush="{x:Null}" FontSize="21.333">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/MIS-TDP;component/View/AuftraegePage.xaml"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+                <Button.Background>
+                    <ImageBrush ImageSource="/MIS-TDP;component/Ressourcen/Auftraege.png" />
+                </Button.Background>
+            </Button>
+			<Button Content="Kraftfahrzeuge" Margin="0" HorizontalAlignment="Left" Width="210" Grid.Row="1" VerticalAlignment="Center" Height="210" Padding="10,3,10,4" BorderThickness="0" TabIndex="2147483643" VerticalContentAlignment="Bottom" FontSize="21.333">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/MIS-TDP;component/View/KraftfahrzeugePage.xaml"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+                <Button.Background>
+                    <ImageBrush ImageSource="/MIS-TDP;component/Ressourcen/Kraftfahrzeuge.png" />
+                </Button.Background>
+            </Button>
+			<Button Content="Neuer Auftrag" Margin="0" VerticalAlignment="Center" Height="210" VerticalContentAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Left" Width="210" Padding="10,3,10,4" BorderThickness="0" BorderBrush="{x:Null}" FontSize="21.333">
+                <Button.Background>
+                    <ImageBrush ImageSource="/MIS-TDP;component/Ressourcen/AuftragNeu.png" />
+                </Button.Background>
+                <i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/MIS-TDP;component/View/AuftragPage.xaml"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
+            <Button BorderBrush="{x:Null}" BorderThickness="0" Content="Versicherte" FontSize="21.333" Height="210" HorizontalAlignment="Left" Margin="0" Padding="10,3,10,4" TabIndex="2147483643" VerticalAlignment="Center" VerticalContentAlignment="Bottom" Width="210" Grid.Column="1" Grid.Row="1">
+            	<i:Interaction.Triggers>
+            		<i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/MIS-TDP;component/View/VersichertePage.xaml"/>
+            		</i:EventTrigger>
+            	</i:Interaction.Triggers>
+                <Button.Background>
+                    <ImageBrush ImageSource="/MIS-TDP;component/Ressourcen/Versicherte.png" />
+                </Button.Background>
+            </Button>
         </Grid>
-    </Grid>
- 
-    <!--Beispielcode für die Verwendung von ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Schaltfläche 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Schaltfläche 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Menüelement 1"/>
-                <shell:ApplicationBarMenuItem Text="Menüelement 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
-
+	</Grid>
 </phone:PhoneApplicationPage>

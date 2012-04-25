@@ -1,0 +1,88 @@
+﻿<MIS_TDP:AuftraegeViewModel xmlns:MIS_TDP="clr-namespace:MIS_TDP">
+	<MIS_TDP:AuftraegeViewModel.Items>
+        <MIS_TDP:Auftrag>
+            <MIS_TDP:Auftrag.Auftragsnummer>77</MIS_TDP:Auftrag.Auftragsnummer>
+            <MIS_TDP:Auftrag.Datum>04/25/2012 22:38:14</MIS_TDP:Auftrag.Datum>
+            <MIS_TDP:Auftrag.GeschaetzterSchaden>437.43</MIS_TDP:Auftrag.GeschaetzterSchaden>
+            <MIS_TDP:Auftrag.KfzKennzeichen>AC-AA 1900</MIS_TDP:Auftrag.KfzKennzeichen>
+            <MIS_TDP:Auftrag.Versichertennummer>28</MIS_TDP:Auftrag.Versichertennummer>
+            <MIS_TDP:Auftrag.VersicherterNachname>Müller</MIS_TDP:Auftrag.VersicherterNachname>
+            <MIS_TDP:Auftrag.VersicherterVorname>Heinz-Peter</MIS_TDP:Auftrag.VersicherterVorname>
+
+            <MIS_TDP:Auftrag.KfzFabrikat>
+                <MIS_TDP:Fabrikat Bezeichnung="Mercedes-Benz" FabriaktID="20"/>
+            </MIS_TDP:Auftrag.KfzFabrikat>
+            <MIS_TDP:Auftrag.Versicherung>
+                <MIS_TDP:Versicherung Bezeichnung="AachenMünchener" VersicherungID="10"/>
+            </MIS_TDP:Auftrag.Versicherung>
+        </MIS_TDP:Auftrag>
+
+        <MIS_TDP:Auftrag>
+            <MIS_TDP:Auftrag.Auftragsnummer>78</MIS_TDP:Auftrag.Auftragsnummer>
+            <MIS_TDP:Auftrag.Datum>04/25/2012 22:38:14</MIS_TDP:Auftrag.Datum>
+            <MIS_TDP:Auftrag.GeschaetzterSchaden>437.43</MIS_TDP:Auftrag.GeschaetzterSchaden>
+            <MIS_TDP:Auftrag.KfzKennzeichen>AC-AA 1901</MIS_TDP:Auftrag.KfzKennzeichen>
+            <MIS_TDP:Auftrag.Versichertennummer>29</MIS_TDP:Auftrag.Versichertennummer>
+            <MIS_TDP:Auftrag.VersicherterNachname>Schmitz</MIS_TDP:Auftrag.VersicherterNachname>
+            <MIS_TDP:Auftrag.VersicherterVorname>Uta</MIS_TDP:Auftrag.VersicherterVorname>
+
+            <MIS_TDP:Auftrag.KfzFabrikat>
+                <MIS_TDP:Fabrikat Bezeichnung="Mercedes-Benz" FabriaktID="20"/>
+            </MIS_TDP:Auftrag.KfzFabrikat>
+            <MIS_TDP:Auftrag.Versicherung>
+                <MIS_TDP:Versicherung Bezeichnung="AachenMünchener" VersicherungID="10"/>
+            </MIS_TDP:Auftrag.Versicherung>
+        </MIS_TDP:Auftrag>
+
+        <MIS_TDP:Auftrag>
+            <MIS_TDP:Auftrag.Auftragsnummer>79</MIS_TDP:Auftrag.Auftragsnummer>
+            <MIS_TDP:Auftrag.Datum>04/25/2012 22:38:14</MIS_TDP:Auftrag.Datum>
+            <MIS_TDP:Auftrag.GeschaetzterSchaden>437.43</MIS_TDP:Auftrag.GeschaetzterSchaden>
+            <MIS_TDP:Auftrag.KfzKennzeichen>AC-AA 1902</MIS_TDP:Auftrag.KfzKennzeichen>
+            <MIS_TDP:Auftrag.Versichertennummer>30</MIS_TDP:Auftrag.Versichertennummer>
+            <MIS_TDP:Auftrag.VersicherterNachname>Schwarz</MIS_TDP:Auftrag.VersicherterNachname>
+            <MIS_TDP:Auftrag.VersicherterVorname>Petra</MIS_TDP:Auftrag.VersicherterVorname>
+
+            <MIS_TDP:Auftrag.KfzFabrikat>
+                <MIS_TDP:Fabrikat Bezeichnung="Mercedes-Benz" FabriaktID="20"/>
+            </MIS_TDP:Auftrag.KfzFabrikat>
+            <MIS_TDP:Auftrag.Versicherung>
+                <MIS_TDP:Versicherung Bezeichnung="AachenMünchener" VersicherungID="10"/>
+            </MIS_TDP:Auftrag.Versicherung>
+        </MIS_TDP:Auftrag>
+
+        <MIS_TDP:Auftrag>
+            <MIS_TDP:Auftrag.Auftragsnummer>80</MIS_TDP:Auftrag.Auftragsnummer>
+            <MIS_TDP:Auftrag.Datum>04/25/2012 22:38:14</MIS_TDP:Auftrag.Datum>
+            <MIS_TDP:Auftrag.GeschaetzterSchaden>437.43</MIS_TDP:Auftrag.GeschaetzterSchaden>
+            <MIS_TDP:Auftrag.KfzKennzeichen>AC-AA 1903</MIS_TDP:Auftrag.KfzKennzeichen>
+            <MIS_TDP:Auftrag.Versichertennummer>31</MIS_TDP:Auftrag.Versichertennummer>
+            <MIS_TDP:Auftrag.VersicherterNachname>Janssen</MIS_TDP:Auftrag.VersicherterNachname>
+            <MIS_TDP:Auftrag.VersicherterVorname>Jens</MIS_TDP:Auftrag.VersicherterVorname>
+
+            <MIS_TDP:Auftrag.KfzFabrikat>
+                <MIS_TDP:Fabrikat Bezeichnung="Mercedes-Benz" FabriaktID="20"/>
+            </MIS_TDP:Auftrag.KfzFabrikat>
+            <MIS_TDP:Auftrag.Versicherung>
+                <MIS_TDP:Versicherung Bezeichnung="AachenMünchener" VersicherungID="10"/>
+            </MIS_TDP:Auftrag.Versicherung>
+        </MIS_TDP:Auftrag>
+
+        <MIS_TDP:Auftrag>
+            <MIS_TDP:Auftrag.Auftragsnummer>81</MIS_TDP:Auftrag.Auftragsnummer>
+            <MIS_TDP:Auftrag.Datum>04/25/2012 22:38:14</MIS_TDP:Auftrag.Datum>
+            <MIS_TDP:Auftrag.GeschaetzterSchaden>437.43</MIS_TDP:Auftrag.GeschaetzterSchaden>
+            <MIS_TDP:Auftrag.KfzKennzeichen>AC-AA 1904</MIS_TDP:Auftrag.KfzKennzeichen>
+            <MIS_TDP:Auftrag.Versichertennummer>32</MIS_TDP:Auftrag.Versichertennummer>
+            <MIS_TDP:Auftrag.VersicherterNachname>Meyer</MIS_TDP:Auftrag.VersicherterNachname>
+            <MIS_TDP:Auftrag.VersicherterVorname>Ole</MIS_TDP:Auftrag.VersicherterVorname>
+
+            <MIS_TDP:Auftrag.KfzFabrikat>
+                <MIS_TDP:Fabrikat Bezeichnung="Mercedes-Benz" FabriaktID="20"/>
+            </MIS_TDP:Auftrag.KfzFabrikat>
+            <MIS_TDP:Auftrag.Versicherung>
+                <MIS_TDP:Versicherung Bezeichnung="AachenMünchener" VersicherungID="10"/>
+            </MIS_TDP:Auftrag.Versicherung>
+        </MIS_TDP:Auftrag>
+    </MIS_TDP:AuftraegeViewModel.Items>
+</MIS_TDP:AuftraegeViewModel>

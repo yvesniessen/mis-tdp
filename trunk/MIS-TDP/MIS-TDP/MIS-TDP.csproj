@@ -54,12 +54,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Drawing, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
@@ -67,9 +72,26 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConvertibleTypeConverter.cs" />
     <Compile Include="DataModel\DataModelBase.cs" />
     <Compile Include="DataModel\DataModelExample.cs" />
+    <Compile Include="DataModel\Fabrikat.cs" />
+    <Compile Include="DataModel\Versicherung.cs" />
+    <Compile Include="DataModel\Auftrag.cs" />
     <Compile Include="DelegatesAndCommands\DelegateCommand.cs" />
+    <Compile Include="ViewModel\AuftraegeViewModel.cs" />
+    <Compile Include="ViewModel\AuftragViewModel.cs" />
+    <Compile Include="ViewModel\VersicherteViewModel.cs" />
+    <Compile Include="ViewModel\KraftfahrzeugeViewModel.cs" />
+    <Compile Include="View\AuftraegePage.xaml.cs">
+      <DependentUpon>AuftraegePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AuftragPage.xaml.cs">
+      <DependentUpon>AuftragPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KraftfahrzeugePage.xaml.cs">
+      <DependentUpon>KraftfahrzeugePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -79,12 +101,31 @@
       <DependentUpon>TestSection.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\VersichertePage.xaml.cs">
+      <DependentUpon>VersichertePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Resource Include="SampleData\AuftragViewModelSampleData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Page Include="View\AuftraegePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\AuftragPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\KraftfahrzeugePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,21 +134,46 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\VersichertePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lib\Microsoft.Expression.Drawing.dll" />
+    <Content Include="lib\Microsoft.Expression.Interactions.dll" />
+    <Content Include="lib\Microsoft.Phone.Controls.dll" />
+    <Content Include="lib\Microsoft.Phone.Controls.Toolkit.dll" />
+    <Content Include="Ressourcen\appbar.add.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressourcen\appbar.sync.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Ressourcen\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Ressourcen\Auftraege.png" />
+    <Resource Include="Ressourcen\AuftragNeu.png" />
     <Content Include="Ressourcen\Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Ressourcen\Kamera.png" />
+    <Resource Include="Ressourcen\Kraftfahrzeuge.png" />
+    <Resource Include="Ressourcen\Mikrophon.png" />
+    <Resource Include="Ressourcen\Schaden.png" />
+    <Resource Include="Ressourcen\Senden.png" />
     <Content Include="Ressourcen\SplashScreenImage.jpg" />
+    <Resource Include="Ressourcen\Versicherte.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="SampleData\AuftraegeViewModelSampleData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Resource>
     <DesignData Include="SampleData\MainWindowViewModelSampleData.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </DesignData>
