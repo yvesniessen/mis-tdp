@@ -6,11 +6,11 @@ using System.Resources;
 // Allgemeine Informationen über eine Assembly werden über die folgende 
 // Attributgruppe gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("MIS_TDP")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Schadenerfassung")]
+[assembly: AssemblyDescription("TolleDelle Schadenerfassung")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MIS_TDP")]
+[assembly: AssemblyCompany("MIS Projekt Gruppe WP")]
+[assembly: AssemblyProduct("TolleDelle Schadenerfassung")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

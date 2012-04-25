@@ -52,7 +52,7 @@ namespace MIS_TDP
             }
             else
             {
-                Debug.WriteLine(parameter.ToString());
+                //Debug.WriteLine(parameter.ToString());
             }
         }
         #endregion
