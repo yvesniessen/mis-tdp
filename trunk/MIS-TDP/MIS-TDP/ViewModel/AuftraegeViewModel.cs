@@ -39,6 +39,7 @@ namespace MIS_TDP
             {
                 Auftrag tmp = new Auftrag();
                 tmp.Auftragsnummer = auftrag.AuftragNr;
+                tmp.Datum = auftrag.Datum;
                 Items.Add(tmp);
             }
 
