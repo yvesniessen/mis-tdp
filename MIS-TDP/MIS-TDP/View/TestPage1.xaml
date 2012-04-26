@@ -12,7 +12,7 @@
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	Orientation="Portrait"
-	shell:SystemTray.IsVisible="True" >
+	shell:SystemTray.IsVisible="True" xmlns:my="clr-namespace:Microsoft.Live.Controls;assembly=Microsoft.Live.Controls">
 
 	<!--Das LayoutRoot-Objekt ist das Stammraster, das den gesamten Seiteninhalt aufnimmt.-->
 	<Grid x:Name="LayoutRoot" Background="Transparent" Loaded="LayoutRoot_Loaded">
@@ -28,7 +28,10 @@
 		</StackPanel>
 
 		<!--ContentPanel-Objekt - Fügen Sie zusätzlichen Inhalt hier ein.-->
-		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"/>
-        
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <my:SignInButton Content="Button" Height="72" HorizontalAlignment="Left" Margin="147,131,0,0" Name="signInButton1" VerticalAlignment="Top" Width="160" SessionChanged="signInButton1_SessionChanged" Scopes="wl.signin wl.basic wl.skydrive wl.skydrive_update" RedirectUri="Your_Redirect_URI"/>
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="33,66,0,0" Name="textBlock1" Text="Bitte melden Sie sich bei Skydrive an" VerticalAlignment="Top" FontSize="25" />
+            <TextBlock FontSize="25" Height="41" HorizontalAlignment="Left" Margin="130,233,0,0" Name="textBlockSingStatus" Text="nicht angemeldet" VerticalAlignment="Top" Foreground="#FFD40303" />
+        </Grid>
     </Grid>
 </phone:PhoneApplicationPage>
