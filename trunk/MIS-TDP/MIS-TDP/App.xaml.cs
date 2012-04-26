@@ -68,6 +68,21 @@ namespace MIS_TDP
         // Dieser Code wird beim Reaktivieren der Anwendung nicht ausgeführt
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            Controller.DatabaseController.CreateDatabase();
+
+            Test t1 = new Test();
+            t1.Name = "Yves";
+
+            
+            Test t2 = new Test();
+            t2.Name = "Chris";
+
+            Controller.DatabaseController.AddEmployee(t1);
+            Controller.DatabaseController.AddEmployee(t2);
+
+            IList<Test> ausgabe = Controller.DatabaseController.GetEmployees();
+
+            Console.WriteLine(ausgabe);
         }
 
         // Code, der ausgeführt werden soll, wenn die Anwendung aktiviert wird (in den Vordergrund gebracht wird)
