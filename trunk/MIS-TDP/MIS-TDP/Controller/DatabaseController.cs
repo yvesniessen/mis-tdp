@@ -67,6 +67,8 @@ namespace MIS_TDP.Controller
 
         public static void AddAuftrag(TblAuftrag auftrag)
         {
+            auftrag.Datum = DateTime.Now;
+            
             using (var context = new DatabaseContext(ConnectionString))
             {
                 if (context.DatabaseExists())
