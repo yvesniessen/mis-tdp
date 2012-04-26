@@ -85,6 +85,8 @@
     <Compile Include="DataModel\Versicherung.cs" />
     <Compile Include="DataModel\Auftrag.cs" />
     <Compile Include="DelegatesAndCommands\DelegateCommand.cs" />
+    <Compile Include="DataModel\BusinessObjects\BusinessObject.cs" />
+    <Compile Include="TestField\DataSetController.cs" />
     <Compile Include="ViewModel\AuftraegeViewModel.cs" />
     <Compile Include="ViewModel\AuftragViewModel.cs" />
     <Compile Include="ViewModel\VersicherteViewModel.cs" />
@@ -189,9 +191,7 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </DesignData>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestField\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
