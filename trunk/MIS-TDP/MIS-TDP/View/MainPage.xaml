@@ -13,7 +13,7 @@
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	Orientation="Portrait"
-	shell:SystemTray.IsVisible="True">
+	shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
 	<!--Das LayoutRoot-Objekt ist das Stammraster, das den gesamten Seiteninhalt aufnimmt.-->
 	<Grid x:Name="LayoutRoot" Background="Transparent">
@@ -25,16 +25,17 @@
 		<!--Das TitlePanel-Objekt enthält den Namen der Anwendung und den Seitentitel.-->
 		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
 			<TextBlock x:Name="ApplicationTitle" Text="TOLLE DELLE" Style="{StaticResource PhoneTextNormalStyle}"/>
-			<TextBlock x:Name="PageTitle" Text="schadenerfassung" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48"/>
+            <TextBlock x:Name="PageTitle" Text="schadenerfassung" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48"/>
 		</StackPanel>
 
 		<!--ContentPanel-Objekt - Fügen Sie zusätzlichen Inhalt hier ein.-->
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,54,0">
 			<Grid.RowDefinitions>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-			</Grid.RowDefinitions>
+				<RowDefinition Height="213*" />
+				<RowDefinition Height="213*" />
+				<RowDefinition Height="211*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
 				<ColumnDefinition/>
@@ -79,6 +80,14 @@
                     <ImageBrush ImageSource="/MIS-TDP;component/Ressourcen/Versicherte.png" />
                 </Button.Background>
             </Button>
+            <HyperlinkButton Name="buttonDevView" Content="DevView" Margin="121,0,109,4" Grid.Row="2" VerticalAlignment="Bottom" d:LayoutOverrides="Width" Height="28" Grid.ColumnSpan="2" Visibility="Collapsed">
+            	<i:Interaction.Triggers>
+            		<i:EventTrigger EventName="Click">
+            			<ec:NavigateToPageAction TargetPage="/View/TestPage1.xaml"/>
+            		</i:EventTrigger>
+            	</i:Interaction.Triggers>
+            </HyperlinkButton>
+
         </Grid>
-	</Grid>
+    </Grid>
 </phone:PhoneApplicationPage>
