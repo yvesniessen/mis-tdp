@@ -65,10 +65,24 @@ namespace MIS_TDP.Controller
 
         }
 
+        public static void AddVersicherung(TblVersicherung versicherung)
+        {
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                if (context.DatabaseExists())
+                {
+                    context.TblVersicherung.InsertOnSubmit(versicherung);
+                    context.SubmitChanges();
+                }
+            }
+        }
+
+
+
+
  
 
         public static void AddEmployee(Test testdaten)
-
         {
 
             using (var context = new DatabaseContext(ConnectionString))
