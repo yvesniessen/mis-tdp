@@ -1,0 +1,13 @@
+ Dumpen des ISOs
+Win7 64Bit
+"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Tools\Iso
+latedStorageExplorerTool\ISETool.exe" ts xd {c719013f-76ac-4dbd-8238-90c7243a7d3
+0} C:\Temp\IsoDump
+
+
+Abbildung 6: Isolated Storage Explorer-Befehlszeilenparameter
+Parameter 	Beschreibung
+ts 	Momentaufnahme erstellen („Take snapshot“, der Befehl zum Herunterladen vom isolierten Speicher auf den Desktop)
+xd 	Kurzform von XDE (also dem Emulator)
+{e0e7e3d7-c24b-498e-b88d-d7c2d4077a3b} 	Die ProductID der Hilfsanwendung. Sie wird in der Datei „WMAppManifest.xml“ aufgeführt und ist für jede Anwendung unterschiedlich.
+C:\Temp\IsoDump 	Ein beliebiger gültiger Pfad auf dem Desktop, in den Sie die Momentaufnahme kopieren möchten.
