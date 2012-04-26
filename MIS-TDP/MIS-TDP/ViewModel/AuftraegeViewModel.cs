@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace MIS_TDP
@@ -18,7 +19,7 @@ namespace MIS_TDP
         #region Constructor
         public AuftraegeViewModel()
         {
-            this.loadSampleData();
+            this.loadDBData();
         }
 
         private void loadSampleData()
@@ -29,6 +30,20 @@ namespace MIS_TDP
                 System.Windows.Application.LoadComponent(this, resourceUri);
             }
         }
+
+            private void loadDBData()
+        {
+            IList<TblAuftrag> auftraege = Controller.DatabaseController.GetAuftraege();
+
+            foreach (TblAuftrag auftrag in auftraege)
+            {
+                Auftrag tmp = new Auftrag();
+                tmp.Auftragsnummer = auftrag.AuftragNr;
+                Items.Add(tmp);
+            }
+
+        }   
+
         #endregion 
 
         #region properties
