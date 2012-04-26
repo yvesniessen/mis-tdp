@@ -46,6 +46,21 @@ namespace MIS_TDP
 
             Controller.DatabaseController.AddAuftrag(test);
 
+            TblAuftrag test1 = new TblAuftrag();
+            test1.GeschaetzterSchaden = 600;
+            Controller.DatabaseController.AddAuftrag(test1);
+
+            TblAuftrag test2 = new TblAuftrag();
+            test2.GeschaetzterSchaden = 700;
+            Controller.DatabaseController.AddAuftrag(test2);
+
+            TblAuftrag test3 = new TblAuftrag();
+            test3.GeschaetzterSchaden = 800;
+            Controller.DatabaseController.AddAuftrag(test3);
+
+
+
+
             IList<Test> ausgabe = Controller.DatabaseController.GetEmployees();
 
             Console.WriteLine(ausgabe);
