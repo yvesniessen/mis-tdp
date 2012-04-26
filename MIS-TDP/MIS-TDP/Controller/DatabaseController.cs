@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace MIS_TDP.Controller
 {
-    public class DatabaseController
+    public static class DatabaseController
     {
                 private const string ConnectionString = @"isostore:/Database.sdf";
 
@@ -67,7 +67,7 @@ namespace MIS_TDP.Controller
 
  
 
-        public static void AddEmployee(Employee employee)
+        public static void AddEmployee(Test testdaten)
 
         {
 
@@ -79,7 +79,7 @@ namespace MIS_TDP.Controller
 
                 {
 
-                    context.Employees.InsertOnSubmit(employee);
+                    context.Test.InsertOnSubmit(testdaten);
 
                     context.SubmitChanges();
 
@@ -91,27 +91,27 @@ namespace MIS_TDP.Controller
 
  
 
-        public static IList<Employee> GetEmployees()
+        public static IList<Test> GetEmployees()
 
         {
 
-            IList<Employee> employees;
+            IList<Test> Testdaten;
 
             using (var context = new DatabaseContext(ConnectionString))
 
             {
 
-                employees = (from emp in context.Employees select emp).ToList();
+                Testdaten = (from test in context.Test select test).ToList();
 
             }
 
  
 
-            return employees;
+            return Testdaten;
 
         }
 
     }
 
-    }
+    
 }
