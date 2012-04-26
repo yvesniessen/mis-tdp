@@ -65,6 +65,31 @@ namespace MIS_TDP.Controller
 
         }
 
+        public static void AddAuftrag(TblAuftrag auftrag)
+        {
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                if (context.DatabaseExists())
+                {
+                    context.TblAuftrag.InsertOnSubmit(auftrag);
+                    context.SubmitChanges();
+                }
+            }
+        }
+
+        public static IList<TblAuftrag> GetAuftraege()
+        {
+            IList<TblAuftrag> auftraege;
+
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                auftraege = (from tblAuftrag in context.TblAuftrag select tblAuftrag).ToList();
+            }
+            return auftraege;
+        }
+
+
+
         public static void AddVersicherung(TblVersicherung versicherung)
         {
             using (var context = new DatabaseContext(ConnectionString))
@@ -77,6 +102,23 @@ namespace MIS_TDP.Controller
             }
         }
 
+        public static IList<TblVersicherung> GetVersicherungen()
+        {
+
+            IList<TblVersicherung> versicherungen;
+
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+
+                versicherungen = (from tblVersicherung in context.TblVersicherung select tblVersicherung).ToList();
+
+            }
+
+
+
+            return versicherungen;
+
+        }
 
 
 
