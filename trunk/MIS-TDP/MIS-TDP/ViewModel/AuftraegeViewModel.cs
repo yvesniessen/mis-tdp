@@ -19,7 +19,8 @@ namespace MIS_TDP
         #region Constructor
         public AuftraegeViewModel()
         {
-            this.loadDBData();
+            this.loadSampleData();
+            //this.loadDBData();
         }
 
         private void loadSampleData()

@@ -15,20 +15,17 @@ namespace MIS_TDP.Controller
 {
     public static class DatabaseController
     {
-                private const string ConnectionString = @"isostore:/Database.sdf";
+        private const string ConnectionString = @"isostore:/Database.sdf";
 
- 
+
 
         public static void CreateDatabase()
-
         {
 
             using (var context = new DatabaseContext(ConnectionString))
-
             {
 
                 if (!context.DatabaseExists())
-
                 {
 
                     // create database if it does not exist
@@ -41,18 +38,15 @@ namespace MIS_TDP.Controller
 
         }
 
- 
+
 
         public static void DeleteDatabase()
-
         {
 
             using (var context = new DatabaseContext(ConnectionString))
-
             {
 
                 if (context.DatabaseExists())
-
                 {
 
                     // delete database if it exist
@@ -65,15 +59,79 @@ namespace MIS_TDP.Controller
 
         }
 
+        public static void AddAttachment(TblAttachment attachment)
+        {
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                if (context.DatabaseExists())
+                {
+                    context.TblAttachment.InsertOnSubmit(attachment);
+                    context.SubmitChanges();
+                }
+            }
+        }
+
+        public static void UpdateAttachment(TblAttachment attachment)
+        {
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                if (context.DatabaseExists())
+                {
+
+                    var attach = (from a in context.TblAttachment
+                                  where a.AttachmentNr == attachment.AttachmentNr
+                                  select a).Single();
+                    attach.AuftragNr = attachment.AuftragNr;
+                    attach.Data = attachment.Data;
+
+                    context.SubmitChanges();
+                }
+            }
+        }
+
+        public static IList<TblAttachment> GetAttachments()
+        {
+            IList<TblAttachment> attachments;
+
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                attachments = (from tblAttachment in context.TblAttachment select tblAttachment).ToList();
+            }
+            return attachments;
+        }
+
         public static void AddAuftrag(TblAuftrag auftrag)
         {
             auftrag.Datum = DateTime.Now;
-            
+
             using (var context = new DatabaseContext(ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
                     context.TblAuftrag.InsertOnSubmit(auftrag);
+                    context.SubmitChanges();
+                }
+            }
+        }
+
+        public static void UpdateAuftrag(TblAuftrag auftrag)
+        {
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                if (context.DatabaseExists())
+                {
+
+                    var auft = (from a in context.TblAuftrag
+                                where a.AuftragNr == auftrag.AuftragNr
+                                select a).Single();
+
+                    auft.GeschaetzterSchaden = auftrag.GeschaetzterSchaden;
+                    auft.KfzFabrikat = auftrag.KfzFabrikat;
+                    auft.KfzKennzeichen = auftrag.KfzKennzeichen;
+                    auft.VersicherterName = auftrag.VersicherterName;
+                    auft.VersicherterVorname = auftrag.VersicherterVorname;
+                    auft.VersicherungNr = auftrag.VersicherungNr;
+
                     context.SubmitChanges();
                 }
             }
@@ -90,6 +148,19 @@ namespace MIS_TDP.Controller
             return auftraege;
         }
 
+        public static TblAuftrag GetAuftrag(int AuftragNr)
+        {
+            TblAuftrag auftrag;
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
+                auftrag = (from tblAuftrag in context.TblAuftrag
+                           where tblAuftrag.AuftragNr == AuftragNr
+                           select tblAuftrag).Single();
+            }
+            return auftrag;
+        }
+
 
 
         public static void AddVersicherung(TblVersicherung versicherung)
@@ -99,6 +170,23 @@ namespace MIS_TDP.Controller
                 if (context.DatabaseExists())
                 {
                     context.TblVersicherung.InsertOnSubmit(versicherung);
+                    context.SubmitChanges();
+                }
+            }
+        }
+
+        public static void UpdateVersicherung(TblVersicherung versicherung)
+        {
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                if (context.DatabaseExists())
+                {
+
+                    var vers = (from a in context.TblVersicherung
+                                where a.VersicherungNr == versicherung.VersicherungNr
+                                select a).Single();
+                    vers.Name = versicherung.Name;
+
                     context.SubmitChanges();
                 }
             }
@@ -124,52 +212,48 @@ namespace MIS_TDP.Controller
 
 
 
- 
 
-        public static void AddEmployee(Test testdaten)
-        {
 
-            using (var context = new DatabaseContext(ConnectionString))
+        //public static void AddEmployee(Test testdaten)
+        //{
 
-            {
+        //    using (var context = new DatabaseContext(ConnectionString))
+        //    {
 
-                if (context.DatabaseExists())
+        //        if (context.DatabaseExists())
+        //        {
 
-                {
+        //            context.Test.InsertOnSubmit(testdaten);
 
-                    context.Test.InsertOnSubmit(testdaten);
+        //            context.SubmitChanges();
 
-                    context.SubmitChanges();
+        //        }
 
-                }
+        //    }
 
-            }
+        //}
 
-        }
 
- 
 
-        public static IList<Test> GetEmployees()
+        //public static IList<Test> GetEmployees()
+        //{
 
-        {
+        //    IList<Test> Testdaten;
 
-            IList<Test> Testdaten;
+        //    using (var context = new DatabaseContext(ConnectionString))
+        //    {
 
-            using (var context = new DatabaseContext(ConnectionString))
+        //        Testdaten = (from test in context.Test select test).ToList();
 
-            {
+        //    }
 
-                Testdaten = (from test in context.Test select test).ToList();
 
-            }
 
- 
+        //    return Testdaten;
 
-            return Testdaten;
-
-        }
+        //}
 
     }
 
-    
+
 }

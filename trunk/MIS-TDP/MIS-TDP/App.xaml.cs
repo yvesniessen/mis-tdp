@@ -28,42 +28,42 @@ namespace MIS_TDP
         /// </summary>
         public App()
         {
-            Controller.DatabaseController.CreateDatabase();
+            //Controller.DatabaseController.CreateDatabase();
 
-            Test t1 = new Test();
-            t1.Name = "Yves";
-
-
-            Test t2 = new Test();
-            t2.Name = "Chris";
-
-            Controller.DatabaseController.AddEmployee(t1);
-            Controller.DatabaseController.AddEmployee(t2);
+            //Test t1 = new Test();
+            //t1.Name = "Yves";
 
 
-            TblAuftrag test = new TblAuftrag();
-            test.GeschaetzterSchaden = 500;
+            //Test t2 = new Test();
+            //t2.Name = "Chris";
 
-            Controller.DatabaseController.AddAuftrag(test);
-
-            TblAuftrag test1 = new TblAuftrag();
-            test1.GeschaetzterSchaden = 600;
-            Controller.DatabaseController.AddAuftrag(test1);
-
-            TblAuftrag test2 = new TblAuftrag();
-            test2.GeschaetzterSchaden = 700;
-            Controller.DatabaseController.AddAuftrag(test2);
-
-            TblAuftrag test3 = new TblAuftrag();
-            test3.GeschaetzterSchaden = 800;
-            Controller.DatabaseController.AddAuftrag(test3);
+            //Controller.DatabaseController.AddEmployee(t1);
+            //Controller.DatabaseController.AddEmployee(t2);
 
 
+            //TblAuftrag test = new TblAuftrag();
+            //test.GeschaetzterSchaden = 500;
+
+            //Controller.DatabaseController.AddAuftrag(test);
+
+            //TblAuftrag test1 = new TblAuftrag();
+            //test1.GeschaetzterSchaden = 600;
+            //Controller.DatabaseController.AddAuftrag(test1);
+
+            //TblAuftrag test2 = new TblAuftrag();
+            //test2.GeschaetzterSchaden = 700;
+            //Controller.DatabaseController.AddAuftrag(test2);
+
+            //TblAuftrag test3 = new TblAuftrag();
+            //test3.GeschaetzterSchaden = 800;
+            //Controller.DatabaseController.AddAuftrag(test3);
 
 
-            IList<Test> ausgabe = Controller.DatabaseController.GetEmployees();
 
-            Console.WriteLine(ausgabe);
+
+            //IList<Test> ausgabe = Controller.DatabaseController.GetEmployees();
+
+            //Console.WriteLine(ausgabe);
 
 
             /**
