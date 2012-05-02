@@ -87,9 +87,10 @@ public class DebugWriter : TextWriter
     #endregion
 }
 
-	public partial class DatabaseContext_new : System.Data.Linq.DataContext
-	{
 
+	public partial class DatabaseContext : System.Data.Linq.DataContext
+	{
+		
 		public bool CreateIfNotExists()
 		{
 			bool created = false;
@@ -160,7 +161,7 @@ public class DebugWriter : TextWriter
 
 		public static string FileName = "Database.sdf";
 
-		public DatabaseContext_new(string connectionString) : base(connectionString)
+		public DatabaseContext(string connectionString) : base(connectionString)
 		{
 			OnCreated();
 		}
@@ -173,6 +174,9 @@ public class DebugWriter : TextWriter
     partial void InsertTblAuftrag(TblAuftrag instance);
     partial void UpdateTblAuftrag(TblAuftrag instance);
     partial void DeleteTblAuftrag(TblAuftrag instance);
+    partial void InsertTblFabrikat(TblFabrikat instance);
+    partial void UpdateTblFabrikat(TblFabrikat instance);
+    partial void DeleteTblFabrikat(TblFabrikat instance);
     partial void InsertTblVersicherung(TblVersicherung instance);
     partial void UpdateTblVersicherung(TblVersicherung instance);
     partial void DeleteTblVersicherung(TblVersicherung instance);
@@ -191,6 +195,14 @@ public class DebugWriter : TextWriter
 			get
 			{
 				return this.GetTable<TblAuftrag>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TblFabrikat> TblFabrikat
+		{
+			get
+			{
+				return this.GetTable<TblFabrikat>();
 			}
 		}
 		
@@ -666,6 +678,92 @@ public class DebugWriter : TextWriter
 		{
 			this.SendPropertyChanging();
 			entity.TblAuftrag = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="tblFabrikat")]
+	public partial class TblFabrikat : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Bezeichnung;
+		
+    #region Definitionen der Extensibility-Methode
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnBezeichnungChanging(string value);
+    partial void OnBezeichnungChanged();
+    #endregion
+		
+		public TblFabrikat()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bezeichnung", DbType="NVarChar(100)")]
+		public string Bezeichnung
+		{
+			get
+			{
+				return this._Bezeichnung;
+			}
+			set
+			{
+				if ((this._Bezeichnung != value))
+				{
+					this.OnBezeichnungChanging(value);
+					this.SendPropertyChanging();
+					this._Bezeichnung = value;
+					this.SendPropertyChanged("Bezeichnung");
+					this.OnBezeichnungChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

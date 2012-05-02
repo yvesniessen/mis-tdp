@@ -1,0 +1,46 @@
+﻿<phone:PhoneApplicationPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" d:DesignWidth="480" d:DesignHeight="800"
+	x:Class="MIS_TDP.PhonePage1"
+	FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	Foreground="{StaticResource PhoneForegroundBrush}"
+	mc:Ignorable="d"
+	Orientation="Portrait"
+	shell:SystemTray.IsVisible="True">
+
+	<!--Das LayoutRoot-Objekt ist das Stammraster, das den gesamten Seiteninhalt aufnimmt.-->
+	<Grid x:Name="LayoutRoot" Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<!--Das TitlePanel-Objekt enthält den Namen der Anwendung und den Seitentitel.-->
+		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+			<TextBlock x:Name="ApplicationTitle" Text="TOLLE DELLE" Style="{StaticResource PhoneTextNormalStyle}"/>
+			<TextBlock x:Name="PageTitle" Text="stammdaten" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+			<Button Content="Fabrikate" Margin="0" HorizontalAlignment="Left" Width="210" VerticalAlignment="Center" Height="210" Padding="10,3,10,4" BorderThickness="0" TabIndex="2147483643" VerticalContentAlignment="Bottom" FontSize="21.333" d:LayoutOverrides="HorizontalAlignment">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<ec:NavigateToPageAction TargetPage="/View/FabrikatePage.xaml"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+				<Button.Background>
+					<ImageBrush ImageSource="/MIS-TDP;component/Ressourcen/Kraftfahrzeuge.png" />
+				</Button.Background>
+			</Button>
+			<Button BorderBrush="{x:Null}" BorderThickness="0" Content="Versicherungen" FontSize="21.333" Height="210" HorizontalAlignment="Left" Margin="213,0,0,0" Padding="10,3,10,4" TabIndex="2147483643" VerticalAlignment="Center" VerticalContentAlignment="Bottom" Width="210">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<ec:NavigateToPageAction TargetPage="/View/VersicherungenPage.xaml"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+				<Button.Background>
+					<ImageBrush ImageSource="/MIS-TDP;component/Ressourcen/Versicherte.png" />
+				</Button.Background>
+			</Button>
+		</StackPanel>
+
+		<!--ContentPanel-Objekt - Fügen Sie zusätzlichen Inhalt hier ein.-->
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"/>
+	</Grid>
+</phone:PhoneApplicationPage>
