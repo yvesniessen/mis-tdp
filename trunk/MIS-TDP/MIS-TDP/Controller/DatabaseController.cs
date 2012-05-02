@@ -13,51 +13,63 @@ using System.Linq;
 
 namespace MIS_TDP.Controller
 {
+    public struct DatabaseReport
+    {
+        public int numOfAufträge;
+        public List<TblAuftrag> Aufträge;
+        public int numOfVersicherungen;
+        public List<TblVersicherung> Versicherungen;
+        public int numOfAttachments;
+        public List<TblAttachment> Attachments;
+    }
+
     public static class DatabaseController
     {
         private const string ConnectionString = @"isostore:/Database.sdf";
 
-
+        #region Generelle Datenbank-Befehle
 
         public static void CreateDatabase()
         {
-
             using (var context = new DatabaseContext(ConnectionString))
             {
-
                 if (!context.DatabaseExists())
                 {
-
                     // create database if it does not exist
-
                     context.CreateDatabase();
-
                 }
-
             }
-
         }
-
-
 
         public static void DeleteDatabase()
         {
-
             using (var context = new DatabaseContext(ConnectionString))
             {
-
                 if (context.DatabaseExists())
                 {
-
                     // delete database if it exist
-
                     context.DeleteDatabase();
-
                 }
-
             }
-
         }
+
+        public static DatabaseReport ReportDatabase()
+        {
+            DatabaseReport result = new DatabaseReport();
+           
+            result.Aufträge = GetAuftraege().ToList<TblAuftrag>();
+            result.numOfAufträge = result.Aufträge.Count();
+            result.Attachments = GetAttachments().ToList<TblAttachment>();
+            result.numOfAttachments = result.Attachments.Count();
+            result.Versicherungen = GetVersicherungen().ToList<TblVersicherung>();
+            result.numOfVersicherungen = result.Versicherungen.Count();
+
+            return result;
+        }
+
+        #endregion
+
+        #region Funktionen für Anhänge
 
         public static void AddAttachment(TblAttachment attachment)
         {
@@ -89,6 +101,25 @@ namespace MIS_TDP.Controller
             }
         }
 
+        public static void DeleteAttachment(TblAttachment Attachment)
+        {
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                if (context.DatabaseExists())
+                {
+                    context.TblAttachment.DeleteOnSubmit(Attachment);
+                    context.SubmitChanges();
+                }
+            }
+        }
+
+        public static void DeleteAttachment(int AttachmentNr)
+        {
+            TblAttachment attachment = GetAttachment(AttachmentNr);
+
+            DeleteAttachment(attachment);
+        }
+
         public static IList<TblAttachment> GetAttachments()
         {
             IList<TblAttachment> attachments;
@@ -99,6 +130,23 @@ namespace MIS_TDP.Controller
             }
             return attachments;
         }
+
+        public static TblAttachment GetAttachment(int AttachmentID)
+        {
+            TblAttachment attachment;
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
+                attachment = (from tblAttachment in context.TblAttachment
+                           where tblAttachment.AttachmentNr == AttachmentID
+                           select tblAttachment).Single();
+            }
+            return attachment;
+        }
+
+        #endregion
+
+        #region Funktionen für Aufträge
 
         public static void AddAuftrag(TblAuftrag auftrag)
         {
@@ -137,6 +185,26 @@ namespace MIS_TDP.Controller
             }
         }
 
+        public static void DeleteAuftrag(TblAuftrag Auftrag)
+        {
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                if (context.DatabaseExists())
+                {
+                    context.TblAuftrag.DeleteOnSubmit(Auftrag);
+                    context.SubmitChanges();
+                }
+            }
+        }
+
+        public static void DeleteAuftrag(int AuftragNr)
+        {
+            TblAuftrag auftrag = GetAuftrag(AuftragNr);
+
+            DeleteAuftrag(auftrag);
+        }
+
+
         public static IList<TblAuftrag> GetAuftraege()
         {
             IList<TblAuftrag> auftraege;
@@ -161,7 +229,9 @@ namespace MIS_TDP.Controller
             return auftrag;
         }
 
+        #endregion
 
+        #region Funktionen für Versicherungen
 
         public static void AddVersicherung(TblVersicherung versicherung)
         {
@@ -192,26 +262,50 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static IList<TblVersicherung> GetVersicherungen()
+        public static void DeleteVersicherung(TblVersicherung Versicherung)
         {
-
-            IList<TblVersicherung> versicherungen;
-
             using (var context = new DatabaseContext(ConnectionString))
             {
-
-                versicherungen = (from tblVersicherung in context.TblVersicherung select tblVersicherung).ToList();
-
+                if (context.DatabaseExists())
+                {
+                    context.TblVersicherung.DeleteOnSubmit(Versicherung);
+                    context.SubmitChanges();
+                }
             }
-
-
-
-            return versicherungen;
-
         }
 
+        public static void DeleteVersicherung(int VersicherungNr)
+        {
+            TblVersicherung versicherung = GetVersicherung(VersicherungNr);
 
+            DeleteVersicherung(versicherung);
+        }
 
+        public static IList<TblVersicherung> GetVersicherungen()
+        {
+            IList<TblVersicherung> versicherungen;
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                versicherungen = (from tblVersicherung in context.TblVersicherung select tblVersicherung).ToList();
+            }
+            return versicherungen;
+        }
+
+        public static TblVersicherung GetVersicherung(int VersicherungsNr)
+        {
+            TblVersicherung versicherung;
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
+                versicherung = (from tblVersicherung in context.TblVersicherung
+                           where tblVersicherung.VersicherungNr == VersicherungsNr
+                           select tblVersicherung).Single();
+            }
+            return versicherung;
+        }
+        #endregion
+
+        #region Testfunktionen
 
 
         //public static void AddEmployee(Test testdaten)
@@ -253,6 +347,7 @@ namespace MIS_TDP.Controller
 
         //}
 
+        #endregion
     }
 
 
