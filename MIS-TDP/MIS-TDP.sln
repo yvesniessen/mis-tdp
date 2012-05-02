@@ -5,6 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MIS-TDP", "MIS-TDP\MIS-TDP.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Knowledgbase", "Knowledgbase", "{E59BE417-3AFD-43C2-BC35-5DCC76F9E07D}"
 	ProjectSection(SolutionItems) = preProject
+		BindableApplicationBarButton.txt = BindableApplicationBarButton.txt
 		DumpIsolatedStorage.txt = DumpIsolatedStorage.txt
 	EndProjectSection
 EndProject

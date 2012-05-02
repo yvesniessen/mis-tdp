@@ -78,7 +78,7 @@
     <Compile Include="Controller\DatabaseController.cs" />
     <Compile Include="Controller\MailController.cs" />
     <Compile Include="ConvertibleTypeConverter.cs" />
-    <Compile Include="DatabaseContext_new.cs" />
+    <Compile Include="DatabaseContext.cs" />
     <Compile Include="DataModel\DataModelBase.cs" />
     <Compile Include="DataModel\DataModelExample.cs" />
     <Compile Include="DataModel\Fabrikat.cs" />
@@ -89,13 +89,18 @@
     <Compile Include="TestField\DataSetController.cs" />
     <Compile Include="ViewModel\AuftraegeViewModel.cs" />
     <Compile Include="ViewModel\AuftragViewModel.cs" />
+    <Compile Include="ViewModel\FabrikateViewModel.cs" />
     <Compile Include="ViewModel\VersicherteViewModel.cs" />
     <Compile Include="ViewModel\KraftfahrzeugeViewModel.cs" />
+    <Compile Include="ViewModel\VersicherungenViewModel.cs" />
     <Compile Include="View\AuftraegePage.xaml.cs">
       <DependentUpon>AuftraegePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AuftragPage.xaml.cs">
       <DependentUpon>AuftragPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FabrikatePage.xaml.cs">
+      <DependentUpon>FabrikatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\KraftfahrzeugePage.xaml.cs">
       <DependentUpon>KraftfahrzeugePage.xaml</DependentUpon>
@@ -106,11 +111,17 @@
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\StammdatenPage.xaml.cs">
+      <DependentUpon>StammdatenPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TestPage1.xaml.cs">
       <DependentUpon>TestPage1.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\VersichertePage.xaml.cs">
       <DependentUpon>VersichertePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VersicherungenPage.xaml.cs">
+      <DependentUpon>VersicherungenPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +129,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="View\VersicherungenPage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="icons\appbar.add.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="SampleData\AuftragViewModelSampleData.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
@@ -130,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\FabrikatePage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\KraftfahrzeugePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -137,6 +159,10 @@
     <Page Include="View\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StammdatenPage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\TestPage1.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
@@ -193,7 +219,6 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </DesignData>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

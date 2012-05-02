@@ -47,11 +47,12 @@ namespace MIS_TDP
                 Debug.WriteLine("Property: Bezeichnung");
             }
         }
+
         #endregion
 
         public override string ToString()
         {
-            return this.Bezeichnung;
+            return this.Bezeichnung; 
         }
 
         public override bool Equals(object obj)
