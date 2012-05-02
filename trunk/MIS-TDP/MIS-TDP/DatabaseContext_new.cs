@@ -87,10 +87,12 @@ public class DebugWriter : TextWriter
     #endregion
 }
 
-
-	public partial class DatabaseContext : System.Data.Linq.DataContext
+	public partial class DatabaseContext_new : System.Data.Linq.DataContext
 	{
-		
+        public Table<TblAttachment> tblAttachment;
+        public Table<TblAuftrag> tblAuftrag;
+        public Table<TblVersicherung> tblVersicherung;
+
 		public bool CreateIfNotExists()
 		{
 			bool created = false;
@@ -161,7 +163,7 @@ public class DebugWriter : TextWriter
 
 		public static string FileName = "Database.sdf";
 
-		public DatabaseContext(string connectionString) : base(connectionString)
+		public DatabaseContext_new(string connectionString) : base(connectionString)
 		{
 			OnCreated();
 		}
@@ -177,9 +179,6 @@ public class DebugWriter : TextWriter
     partial void InsertTblVersicherung(TblVersicherung instance);
     partial void UpdateTblVersicherung(TblVersicherung instance);
     partial void DeleteTblVersicherung(TblVersicherung instance);
-    partial void InsertTest(Test instance);
-    partial void UpdateTest(Test instance);
-    partial void DeleteTest(Test instance);
     #endregion
 		
 		public System.Data.Linq.Table<TblAttachment> TblAttachment
@@ -203,14 +202,6 @@ public class DebugWriter : TextWriter
 			get
 			{
 				return this.GetTable<TblVersicherung>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Test> Test
-		{
-			get
-			{
-				return this.GetTable<Test>();
 			}
 		}
 	}
@@ -406,6 +397,8 @@ public class DebugWriter : TextWriter
 		
 		private System.Nullable<int> _VersicherungNr;
 		
+		private System.Nullable<System.DateTime> _Datum;
+		
 		private EntitySet<TblAttachment> _TblAttachment;
 		
 		private EntityRef<TblVersicherung> _TblVersicherung;
@@ -428,6 +421,8 @@ public class DebugWriter : TextWriter
     partial void OnKfzFabrikatChanged();
     partial void OnVersicherungNrChanging(System.Nullable<int> value);
     partial void OnVersicherungNrChanged();
+    partial void OnDatumChanging(System.Nullable<System.DateTime> value);
+    partial void OnDatumChanged();
     #endregion
 		
 		public TblAuftrag()
@@ -573,6 +568,26 @@ public class DebugWriter : TextWriter
 					this._VersicherungNr = value;
 					this.SendPropertyChanged("VersicherungNr");
 					this.OnVersicherungNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="datum", Storage="_Datum", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Datum
+		{
+			get
+			{
+				return this._Datum;
+			}
+			set
+			{
+				if ((this._Datum != value))
+				{
+					this.OnDatumChanging(value);
+					this.SendPropertyChanging();
+					this._Datum = value;
+					this.SendPropertyChanged("Datum");
+					this.OnDatumChanged();
 				}
 			}
 		}
@@ -768,92 +783,6 @@ public class DebugWriter : TextWriter
 		{
 			this.SendPropertyChanging();
 			entity.TblVersicherung = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="test")]
-	public partial class Test : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Name;
-		
-    #region Definitionen der Extensibility-Methode
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    #endregion
-		
-		public Test()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(100)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }
