@@ -78,7 +78,7 @@
     <Compile Include="Controller\DatabaseController.cs" />
     <Compile Include="Controller\MailController.cs" />
     <Compile Include="ConvertibleTypeConverter.cs" />
-    <Compile Include="DatabaseContext.cs" />
+    <Compile Include="DatabaseContext_new.cs" />
     <Compile Include="DataModel\DataModelBase.cs" />
     <Compile Include="DataModel\DataModelExample.cs" />
     <Compile Include="DataModel\Fabrikat.cs" />
