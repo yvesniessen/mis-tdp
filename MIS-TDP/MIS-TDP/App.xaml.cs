@@ -28,6 +28,8 @@ namespace MIS_TDP
         /// </summary>
         public App()
         {
+            //test für Basti
+            
             //Controller.DatabaseController.CreateDatabase();
 
             //Test t1 = new Test();
