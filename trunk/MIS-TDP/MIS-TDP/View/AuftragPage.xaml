@@ -11,6 +11,7 @@
 	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
 	xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
 	xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expression.Drawing"
+                           
 	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
 	
 	SupportedOrientations="Portrait" Orientation="Portrait"
@@ -33,7 +34,7 @@
 			<Grid>
 				<TextBlock Margin="10,99,10,0" TextWrapping="Wrap" Text="Versicherung" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}"/>
 				<TextBlock Margin="10,198,10,0" TextWrapping="Wrap" Text="Versicherter" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}"/>
-                <Button x:Name="VersicherterButton" Content="{Binding Item.Versicherter, Mode=OneWay}" Margin="-6,216,-6,0" VerticalAlignment="Top" Background="#BFFFFFFF" Foreground="Black" Padding="10,3,10,5" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Height="72">
+                <Button x:Name="VersicherterButton" Content="{Binding Mode=TwoWay, Path=Item.Versicherter}" Margin="-6,216,-6,0" VerticalAlignment="Top" Background="#BFFFFFFF" Foreground="Black" Padding="10,3,10,5" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Height="72" Click="VersicherterButton_Click" DataContext="{Binding}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ec:ChangePropertyAction TargetObject="{Binding ElementName=pivot}" PropertyName="SelectedIndex" Value="1"/>
@@ -41,7 +42,7 @@
                     </i:Interaction.Triggers>
                 </Button>
                 <TextBlock Margin="10,0" TextWrapping="Wrap" Text="Auftragsnummer" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
-				<TextBox x:Name="AuftragsnummerTextBox" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.Auftragsnummer, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number"/>
+				<TextBox x:Name="AuftragsnummerTextBox" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.Auftragsnummer, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number" TextChanged="AuftragsnummerTextBox_TextChanged" />
 				<TextBlock Margin="10,280,10,300" TextWrapping="Wrap" Text="Kraftfahrzeug" Style="{StaticResource PhoneTextNormalStyle}" d:LayoutOverrides="Height"/>
                 <Button x:Name="KraftfahrzeugButton" Content="{Binding Item.KfzKennzeichen}" Margin="-6,298,-6,237" Background="#BFFFFFFF" Foreground="Black" Padding="10,3,10,5" BorderBrush="{x:Null}" HorizontalContentAlignment="Left">
 					<i:Interaction.Triggers>
@@ -50,7 +51,7 @@
 						</i:EventTrigger>
 					</i:Interaction.Triggers>
 				</Button>
-                <toolkit:ListPicker x:Name="VersicherungListPicker" Margin="8,123,8,0" VerticalAlignment="Top" Height="52" ItemsSource="{Binding Versicherungen}" FontFamily="Segoe WP Semibold" UseLayoutRounding="True" SelectedItem="{Binding Item.Versicherung}">
+                <toolkit:ListPicker x:Name="VersicherungListPicker" Margin="8,123,8,0" VerticalAlignment="Top" Height="52" ItemsSource="{Binding Versicherungen}" FontFamily="Segoe WP Semibold" UseLayoutRounding="True" SelectedItem="{Binding Item.Versicherung}" DataContext="{Binding}">
 					<toolkit:ListPicker.FullModeItemTemplate>  
 						<DataTemplate>
 							<StackPanel Orientation="Vertical">
@@ -70,6 +71,11 @@
                     </Button.Background>
                 </Button>
 				<Button Content="Senden" HorizontalAlignment="Left" Margin="200,0,0,30" VerticalAlignment="Bottom" Width="210" Height="210" VerticalContentAlignment="Bottom" Padding="10,3,10,0" BorderBrush="{x:Null}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ec:CallMethodAction MethodName="AddAuftrag"  TargetObject="{Binding}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="/MIS-TDP;component/Ressourcen/Senden.png" />
                     </Button.Background>
@@ -85,12 +91,10 @@
 						</i:EventTrigger>
 					</i:Interaction.Triggers>
 				</es:BlockArrow>
-				<TextBlock Margin="10,0" TextWrapping="Wrap" Text="Versichertennummer" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
-                <TextBox x:Name="VersicherungsnummerTextBox" Margin="-5,20,-5,0" TextWrapping="Wrap" Text="{Binding Item.Versichertennummer, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number"/>
-                <TextBlock Margin="10,115,10,0" TextWrapping="Wrap" Text="Vorname" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
-                <TextBox x:Name="VornameTextBox" Margin="-5,134,-5,0" TextWrapping="Wrap" Text="{Binding Item.VersicherterVorname, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="PersonalGivenName"/>
+				<TextBlock Margin="10,115,10,0" TextWrapping="Wrap" Text="Vorname" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
+                <TextBox x:Name="VornameTextBox" Margin="-5,134,-5,0" TextWrapping="Wrap" Text="{Binding Item.VersicherterVorname, Mode=TwoWay}" TextChanged="VornameTextBox_TextChanged" VerticalAlignment="Top" Padding="0" InputScope="PersonalGivenName"/>
                 <TextBlock Margin="10,199,10,0" TextWrapping="Wrap" Text="Nachname" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
-                <TextBox x:Name="NachnameTextBox" Margin="-5,218,-5,0" TextWrapping="Wrap" Text="{Binding Item.VersicherterNachname, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="PersonalGivenName"/>
+                <TextBox x:Name="NachnameTextBox" Margin="-5,218,-5,0" TextWrapping="Wrap" Text="{Binding Item.VersicherterNachname, Mode=TwoWay}" TextChanged="NachnameTextBox_TextChanged" VerticalAlignment="Top" Padding="0" InputScope="PersonalGivenName"/>
             </Grid>
         </controls:PivotItem>
 		<controls:PivotItem Header="kraftfahrzeug">

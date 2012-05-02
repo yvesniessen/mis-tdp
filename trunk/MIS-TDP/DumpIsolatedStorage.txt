@@ -1,8 +1,6 @@
  Dumpen des ISOs
 Win7 64Bit
-"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Tools\Iso
-latedStorageExplorerTool\ISETool.exe" ts xd {c719013f-76ac-4dbd-8238-90c7243a7d3
-0} C:\Temp\IsoDump
+"C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Tools\IsolatedStorageExplorerTool\ISETool.exe" ts xd {c719013f-76ac-4dbd-8238-90c7243a7d30} C:\Temp\IsoDump
 
 
 Abbildung 6: Isolated Storage Explorer-Befehlszeilenparameter

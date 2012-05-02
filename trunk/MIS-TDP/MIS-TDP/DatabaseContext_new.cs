@@ -89,9 +89,6 @@ public class DebugWriter : TextWriter
 
 	public partial class DatabaseContext_new : System.Data.Linq.DataContext
 	{
-        public Table<TblAttachment> tblAttachment;
-        public Table<TblAuftrag> tblAuftrag;
-        public Table<TblVersicherung> tblVersicherung;
 
 		public bool CreateIfNotExists()
 		{

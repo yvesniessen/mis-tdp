@@ -47,6 +47,8 @@ namespace MIS_TDP
             }
         }
 
+        
+
         private ObservableCollection<Versicherung> VersicherungenItems = new ObservableCollection<Versicherung>();
         public ObservableCollection<Versicherung> Versicherungen
         {
@@ -79,6 +81,19 @@ namespace MIS_TDP
         #endregion
 
         #region ButtonCommands
+
+        public  void AddAuftrag()
+        {
+            TblAuftrag neuerAuftrag  = new TblAuftrag();
+            neuerAuftrag.GeschaetzterSchaden = (int)this.item.GeschaetzterSchaden;
+            neuerAuftrag.KfzFabrikat = this.item.KfzFabrikat.Bezeichnung;
+            neuerAuftrag.KfzKennzeichen = this.item.KfzKennzeichen;
+            neuerAuftrag.VersicherterName = this.item.VersicherterNachname;
+            neuerAuftrag.VersicherterVorname = this.item.VersicherterVorname;
+ //           neuerAuftrag.VersicherungNr = this.item.Versicherung.VersicherungID;
+
+            Controller.DatabaseController.AddAuftrag(neuerAuftrag);
+        }
 
         #endregion
     }

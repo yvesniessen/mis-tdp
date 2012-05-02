@@ -19,5 +19,30 @@ namespace MIS_TDP
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void AuftragsnummerTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void VornameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           
+        }
+
+        private void NachnameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void VersicherterButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    
     }
 }
