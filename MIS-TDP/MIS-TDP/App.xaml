@@ -11,8 +11,12 @@
     <Application.Resources>
     	<local:AuftragViewModel x:Key="AuftragViewModel" />
         <local:AuftraegeViewModel x:Key="AuftraegeViewModel" />
-        <local:AuftraegeViewModel x:Key="KraftfahrzeugeViewModel" />
-        <local:AuftraegeViewModel x:Key="VersicherteViewModel" />
+        <local:KraftfahrzeugeViewModel x:Key="KraftfahrzeugeViewModel" />
+        <local:VersicherteViewModel x:Key="VersicherteViewModel" />
+        <local:FabrikatViewModel x:Key="FabrikatViewModel" />
+        <local:FabrikateViewModel x:Key="FabrikateViewModel" />
+        <local:VersicherungViewModel x:Key="VersicherungViewModel" />
+        <local:VersicherungenViewModel x:Key="VersicherungenViewModel" />
     </Application.Resources>
 
 

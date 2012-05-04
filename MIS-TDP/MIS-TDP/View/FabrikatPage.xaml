@@ -12,7 +12,9 @@
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	Orientation="Portrait"
-	shell:SystemTray.IsVisible="True">
+	shell:SystemTray.IsVisible="True"
+    DataContext="{Binding Source={StaticResource FabrikatViewModel}}">
+ 
 
 	<!--Das LayoutRoot-Objekt ist das Stammraster, das den gesamten Seiteninhalt aufnimmt.-->
 	<Grid x:Name="LayoutRoot" Background="Transparent">
@@ -32,17 +34,14 @@
 			<Button Content="Speichern" HorizontalAlignment="Left" Margin="23,0,0,8" VerticalAlignment="Bottom" Width="210" Height="210" VerticalContentAlignment="Bottom" Padding="10,3,10,0" BorderBrush="{x:Null}">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="Click">
-						<ec:CallMethodAction MethodName="AddAuftrag"  TargetObject="{Binding}" />
+						<ec:CallMethodAction MethodName="AddFabrikat"  TargetObject="{Binding}" />
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
-				<Button.Background>
-					<ImageBrush ImageSource="/MIS-TDP;component/Ressourcen/Senden.png" />
-				</Button.Background>
 			</Button>
 			<TextBlock Margin="10,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"><Run Text="Fabrikatnummer"/><LineBreak/><Run/></TextBlock>
-			<TextBox x:Name="FabrikatnummerTextBox" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.AuftragNr, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number"/>
+			<TextBox x:Name="FabrikatnummerTextBox" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.ID, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number" IsEnabled="False" />
 			<TextBlock Margin="10,92,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"><Run Text="Bezeichnung"/><LineBreak/><Run/></TextBlock>
-			<TextBox x:Name="BezeichnungTextBox_Copy" Margin="-5,111,-5,0" TextWrapping="Wrap" Text="{Binding Item.AuftragNr, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number"/>
+			<TextBox x:Name="BezeichnungTextBox_Copy" Margin="-5,111,-5,0" TextWrapping="Wrap" Text="{Binding Item.Bezeichnung, Mode=TwoWay}" VerticalAlignment="Top" Padding="0"/>
 		</Grid>
 	</Grid>
 </phone:PhoneApplicationPage>

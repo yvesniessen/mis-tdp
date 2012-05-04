@@ -6,13 +6,16 @@
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
 	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
 	x:Class="MIS_TDP.FabrikatePage"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	Orientation="Portrait"
-	shell:SystemTray.IsVisible="True">
+	shell:SystemTray.IsVisible="True"
+    DataContext="{Binding Source={StaticResource FabrikateViewModel}}">
+    
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
             <shell:ApplicationBarIconButton Click="ApplicationBarButtonAddClick" IconUri="/icons/appbar.add.rest.png" IsEnabled="True" Text="neu"/>
@@ -35,7 +38,23 @@
 
 		<!--ContentPanel-Objekt - Fügen Sie zusätzlichen Inhalt hier ein.-->
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<ListBox Margin="8,8,8,49"/>
-		</Grid>
+            <ListBox Margin="12,0,0,12" ItemsSource="{Binding Items}" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding ID}" FontSize="16"/>
+                            <TextBlock Text="{Binding Bezeichnung}" FontSize="36" Margin="0 -5 0 10"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <ec:NavigateToPageAction TargetPage="/View/FabrikatPage.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </ListBox>
+        </Grid>
 	</Grid>
 </phone:PhoneApplicationPage>

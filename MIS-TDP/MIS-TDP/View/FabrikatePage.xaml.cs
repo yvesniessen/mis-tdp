@@ -28,7 +28,7 @@ namespace MIS_TDP
 
         private void ApplicationBarButtonUpdateClick(object sender, System.EventArgs e)
         {
-            //todo:
+            
         }
     }
 }
