@@ -78,11 +78,16 @@
     <Compile Include="Controller\DatabaseController.cs" />
     <Compile Include="Controller\MailController.cs" />
     <Compile Include="ConvertibleTypeConverter.cs" />
-    <Compile Include="DatabaseContext.cs" />
+    <Compile Include="DataModel\DatabaseContext.cs" />
     <Compile Include="DataModel\DataModelBase.cs" />
     <Compile Include="DataModel\DataModelExample.cs" />
+    <Compile Include="DataModel\DebugWriter.cs" />
     <Compile Include="DelegatesAndCommands\DelegateCommand.cs" />
     <Compile Include="DataModel\BusinessObjects\BusinessObject.cs" />
+    <Compile Include="DataModel\TblAttachment.cs" />
+    <Compile Include="DataModel\TblAuftrag.cs" />
+    <Compile Include="DataModel\TblFabrikat.cs" />
+    <Compile Include="DataModel\TblVersicherung.cs" />
     <Compile Include="TestField\DataSetController.cs" />
     <Compile Include="ViewModel\AuftraegeViewModel.cs" />
     <Compile Include="ViewModel\AuftragViewModel.cs" />
@@ -133,10 +138,6 @@
     <Content Include="icons\appbar.add.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="SampleData\AuftragViewModelSampleData.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
-      <SubType>Designer</SubType>
-    </Resource>
     <Page Include="View\AuftraegePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -210,15 +211,10 @@
     <Resource Include="Ressourcen\Versicherte.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SampleData\AuftraegeViewModelSampleData.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
-    </Resource>
-    <DesignData Include="SampleData\MainWindowViewModelSampleData.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
-    </DesignData>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Folder Include="SampleData\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

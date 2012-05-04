@@ -109,7 +109,7 @@
 				<TextBlock Margin="10,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"><Run Text="Kennzeichen"/><LineBreak/><Run/></TextBlock>
                 <TextBox x:Name="KennzeichenTextBox" Margin="-5,20,-5,0" TextWrapping="Wrap" VerticalAlignment="Top" Padding="0" InputScope="Default" Text="{Binding Item.KfzKennzeichen, Mode=TwoWay}"/>
 				<TextBlock Margin="10,91,10,0" TextWrapping="Wrap" Text="Fabrikat" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}"/>
-                <toolkit:ListPicker x:Name="FabrikatListPicker" Margin="8,116,8,0" VerticalAlignment="Top" Height="52" FontFamily="Segoe WP Semibold" UseLayoutRounding="True" ItemsSource="{Binding Fabrikate}" SelectedItem="{Binding Item.KfzFabrikat}">
+                <toolkit:ListPicker x:Name="FabrikatListPicker" Margin="8,116,8,0" VerticalAlignment="Top" Height="52" FontFamily="Segoe WP Semibold" UseLayoutRounding="True" ItemsSource="{Binding Fabrikate}" SelectedItem="{Binding Item.KfzFabrikatNr}">
 					<toolkit:ListPicker.FullModeItemTemplate>  
 						<DataTemplate>
 							<StackPanel Orientation="Vertical">

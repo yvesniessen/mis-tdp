@@ -19,6 +19,8 @@ namespace MIS_TDP
         public AuftragViewModel()
         {
             //this.loadSampleData();
+
+         //Todo: nur Testdaten, hier muss entsprechende ID des Auftrags geladen werden mit dem Page aufgerufen wurde
             this.item = Controller.DatabaseController.GetAuftrag(1);
         }
 

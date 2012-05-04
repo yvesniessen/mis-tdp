@@ -18,7 +18,8 @@ namespace MIS_TDP
         #region Constructor
         public KraftfahrzeugeViewModel()
         {
-            this.loadSampleData();
+            //this.loadSampleData();
+            //this.loadDBData();
         }
 
         private void loadSampleData()
@@ -29,11 +30,16 @@ namespace MIS_TDP
                 System.Windows.Application.LoadComponent(this, resourceUri);
             }
         }
+
+        private void loadDBData()
+        {
+            this.items = Controller.DatabaseController.GetFabrikate();
+        }
         #endregion 
 
         #region properties
-        private ObservableCollection<TblAuftrag> items = new ObservableCollection<TblAuftrag>();
-        public ObservableCollection<TblAuftrag> Items
+        private ObservableCollection<TblFabrikat> items = new ObservableCollection<TblFabrikat>();
+        public ObservableCollection<TblFabrikat> Items
         {
             get
             {
