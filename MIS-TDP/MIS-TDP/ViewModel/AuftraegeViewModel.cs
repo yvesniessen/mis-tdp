@@ -34,23 +34,15 @@ namespace MIS_TDP
 
             private void loadDBData()
         {
-            IList<TblAuftrag> auftraege = Controller.DatabaseController.GetAuftraege();
-
-            foreach (TblAuftrag auftrag in auftraege)
-            {
-                Auftrag tmp = new Auftrag();
-                tmp.Auftragsnummer = auftrag.AuftragNr;
-                tmp.Datum = Convert.ToDateTime(auftrag.Datum);
-                Items.Add(tmp);
-            }
-
+            this.items = Controller.DatabaseController.GetAuftraege();
         }   
 
         #endregion 
 
         #region properties
-        private ObservableCollection<Auftrag> items = new ObservableCollection<Auftrag>();
-        public ObservableCollection<Auftrag> Items
+
+        private ObservableCollection<TblAuftrag> items = new ObservableCollection<TblAuftrag>();
+        public ObservableCollection<TblAuftrag> Items
         {
             get
             {

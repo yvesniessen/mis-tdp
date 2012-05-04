@@ -81,9 +81,6 @@
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="DataModel\DataModelBase.cs" />
     <Compile Include="DataModel\DataModelExample.cs" />
-    <Compile Include="DataModel\Fabrikat.cs" />
-    <Compile Include="DataModel\Versicherung.cs" />
-    <Compile Include="DataModel\Auftrag.cs" />
     <Compile Include="DelegatesAndCommands\DelegateCommand.cs" />
     <Compile Include="DataModel\BusinessObjects\BusinessObject.cs" />
     <Compile Include="TestField\DataSetController.cs" />

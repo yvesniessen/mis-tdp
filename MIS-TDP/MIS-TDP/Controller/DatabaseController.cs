@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace MIS_TDP.Controller
 {
@@ -39,7 +40,7 @@ namespace MIS_TDP.Controller
                 {
                     // create database if it does not exist
                     context.CreateDatabase();
-                
+
                 }
             }
         }
@@ -59,7 +60,7 @@ namespace MIS_TDP.Controller
         public static DatabaseReport ReportDatabase()
         {
             DatabaseReport result = new DatabaseReport();
-           
+
             result.Aufträge = GetAuftraege().ToList<TblAuftrag>();
             result.numOfAufträge = result.Aufträge.Count();
             result.Attachments = GetAttachments().ToList<TblAttachment>();
@@ -143,8 +144,8 @@ namespace MIS_TDP.Controller
             {
                 //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
                 attachment = (from tblAttachment in context.TblAttachment
-                           where tblAttachment.AttachmentNr == AttachmentID
-                           select tblAttachment).Single();
+                              where tblAttachment.AttachmentNr == AttachmentID
+                              select tblAttachment).Single();
             }
             return attachment;
         }
@@ -210,15 +211,15 @@ namespace MIS_TDP.Controller
         }
 
 
-        public static IList<TblAuftrag> GetAuftraege()
+        public static ObservableCollection<TblAuftrag> GetAuftraege()
         {
-            IList<TblAuftrag> auftraege;
+            List<TblAuftrag> auftraege = new List<TblAuftrag>();
 
             using (var context = new DatabaseContext(ConnectionString))
             {
                 auftraege = (from tblAuftrag in context.TblAuftrag select tblAuftrag).ToList();
             }
-            return auftraege;
+            return toObservableCollection<TblAuftrag>(auftraege);
         }
 
         public static TblAuftrag GetAuftrag(int AuftragNr)
@@ -303,8 +304,8 @@ namespace MIS_TDP.Controller
             {
                 //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
                 versicherung = (from tblVersicherung in context.TblVersicherung
-                           where tblVersicherung.VersicherungNr == VersicherungsNr
-                           select tblVersicherung).Single();
+                                where tblVersicherung.VersicherungNr == VersicherungsNr
+                                select tblVersicherung).Single();
             }
             return versicherung;
         }
@@ -332,8 +333,8 @@ namespace MIS_TDP.Controller
                 {
 
                     var fab = (from a in context.TblFabrikat
-                                where a.ID == fabrikat.ID
-                                select a).Single();
+                               where a.ID == fabrikat.ID
+                               select a).Single();
                     fab.Bezeichnung = fabrikat.Bezeichnung;
 
                     context.SubmitChanges();
@@ -360,14 +361,14 @@ namespace MIS_TDP.Controller
             DeleteFabrikat(fabrikat);
         }
 
-        public static IList<TblFabrikat> GetFabrikate()
+        public static ObservableCollection<TblFabrikat> GetFabrikate()
         {
             IList<TblFabrikat> fabrikate;
             using (var context = new DatabaseContext(ConnectionString))
             {
                 fabrikate = (from tblFabrikat in context.TblFabrikat select tblFabrikat).ToList();
             }
-            return fabrikate;
+            return toObservableCollection<TblFabrikat>(fabrikate);
         }
 
         public static TblFabrikat GetFabrikat(int FabrikatID)
@@ -377,8 +378,8 @@ namespace MIS_TDP.Controller
             {
                 //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
                 fabrikat = (from tblFabrikat in context.TblFabrikat
-                                where tblFabrikat.ID == FabrikatID
-                                select tblFabrikat).Single();
+                            where tblFabrikat.ID == FabrikatID
+                            select tblFabrikat).Single();
             }
             return fabrikat;
         }
@@ -428,7 +429,20 @@ namespace MIS_TDP.Controller
         //}
 
         #endregion
+
+
+
+        private static ObservableCollection<T> toObservableCollection<T>(IEnumerable<T> enumerable)
+        {
+
+            var col = new ObservableCollection<T>();
+            foreach (var cur in enumerable)
+            {
+                col.Add(cur);
+            }
+            return col;
+        }
+
+
     }
-
-
 }

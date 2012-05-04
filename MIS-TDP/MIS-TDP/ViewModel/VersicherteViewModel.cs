@@ -32,8 +32,8 @@ namespace MIS_TDP
         #endregion 
 
         #region properties
-        private ObservableCollection<Auftrag> items = new ObservableCollection<Auftrag>();
-        public ObservableCollection<Auftrag> Items
+        private ObservableCollection<TblAuftrag> items = new ObservableCollection<TblAuftrag>();
+        public ObservableCollection<TblAuftrag> Items
         {
             get
             {

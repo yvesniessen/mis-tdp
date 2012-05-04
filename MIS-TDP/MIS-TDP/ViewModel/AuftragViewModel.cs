@@ -18,7 +18,8 @@ namespace MIS_TDP
         #region Constructor
         public AuftragViewModel()
         {
-            this.loadSampleData();
+            //this.loadSampleData();
+            this.item = Controller.DatabaseController.GetAuftrag(1);
         }
 
         private void loadSampleData()
@@ -32,8 +33,8 @@ namespace MIS_TDP
         #endregion 
 
         #region properties
-        private Auftrag item;
-        public Auftrag Item
+        private TblAuftrag item;
+        public TblAuftrag Item
         {
             get
             {
@@ -47,10 +48,10 @@ namespace MIS_TDP
             }
         }
 
-        
 
-        private ObservableCollection<Versicherung> VersicherungenItems = new ObservableCollection<Versicherung>();
-        public ObservableCollection<Versicherung> Versicherungen
+
+        private ObservableCollection<TblVersicherung> VersicherungenItems = new ObservableCollection<TblVersicherung>();
+        public ObservableCollection<TblVersicherung> Versicherungen
         {
             get
             {
@@ -64,8 +65,8 @@ namespace MIS_TDP
             }
         }
 
-        private ObservableCollection<Fabrikat> FabrikateItems = new ObservableCollection<Fabrikat>();
-        public ObservableCollection<Fabrikat> Fabrikate
+        private ObservableCollection<TblFabrikat> FabrikateItems = new ObservableCollection<TblFabrikat>();
+        public ObservableCollection<TblFabrikat> Fabrikate
         {
             get
             {
@@ -85,12 +86,7 @@ namespace MIS_TDP
         public  void AddAuftrag()
         {
             TblAuftrag neuerAuftrag  = new TblAuftrag();
-            neuerAuftrag.GeschaetzterSchaden = (int)this.item.GeschaetzterSchaden;
-            neuerAuftrag.KfzFabrikat = this.item.KfzFabrikat.Bezeichnung;
-            neuerAuftrag.KfzKennzeichen = this.item.KfzKennzeichen;
-            neuerAuftrag.VersicherterName = this.item.VersicherterNachname;
-            neuerAuftrag.VersicherterVorname = this.item.VersicherterVorname;
- //           neuerAuftrag.VersicherungNr = this.item.Versicherung.VersicherungID;
+            neuerAuftrag = item;
 
             Controller.DatabaseController.AddAuftrag(neuerAuftrag);
         }
