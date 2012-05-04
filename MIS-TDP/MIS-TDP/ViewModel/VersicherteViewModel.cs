@@ -18,7 +18,8 @@ namespace MIS_TDP
         #region Constructor
         public VersicherteViewModel()
         {
-            this.loadSampleData();
+            //this.loadSampleData();
+            this.loadDBData();
         }
 
         private void loadSampleData()
@@ -29,6 +30,13 @@ namespace MIS_TDP
                 System.Windows.Application.LoadComponent(this, resourceUri);
             }
         }
+
+        private void loadDBData()
+        {
+            this.items = Controller.DatabaseController.GetAuftraege();
+        }
+
+
         #endregion 
 
         #region properties

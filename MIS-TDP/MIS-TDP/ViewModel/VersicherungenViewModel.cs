@@ -20,12 +20,12 @@ namespace MIS_TDP
         public VersicherungenViewModel()
         {
             //this.loadSampleData();
-            //this.loadDBData();
+            this.loadDBData();
         }
 
         private void loadDBData()
         {
-
+            this.items = Controller.DatabaseController.GetVersicherungen();
         }
 
         #endregion

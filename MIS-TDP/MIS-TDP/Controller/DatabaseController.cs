@@ -30,6 +30,22 @@ namespace MIS_TDP.Controller
     {
         private const string ConnectionString = @"isostore:/Database.sdf";
 
+        #region Hilfsfunktionen
+
+        private static ObservableCollection<T> toObservableCollection<T>(IEnumerable<T> enumerable)
+        {
+
+            var col = new ObservableCollection<T>();
+            foreach (var cur in enumerable)
+            {
+                col.Add(cur);
+            }
+            return col;
+        }
+
+        #endregion
+
+
         #region Generelle Datenbank-Befehle (create delete Report)
 
         public static void CreateDatabase()
@@ -126,7 +142,7 @@ namespace MIS_TDP.Controller
             DeleteAttachment(attachment);
         }
 
-        public static IList<TblAttachment> GetAttachments()
+        public static ObservableCollection<TblAttachment> GetAttachments()
         {
             IList<TblAttachment> attachments;
 
@@ -134,7 +150,7 @@ namespace MIS_TDP.Controller
             {
                 attachments = (from tblAttachment in context.TblAttachment select tblAttachment).ToList();
             }
-            return attachments;
+            return toObservableCollection<TblAttachment>(attachments);
         }
 
         public static TblAttachment GetAttachment(int AttachmentID)
@@ -180,7 +196,6 @@ namespace MIS_TDP.Controller
                                 select a).Single();
 
                     auft.GeschaetzterSchaden = auftrag.GeschaetzterSchaden;
-                    auft.KfzFabrikat = auftrag.KfzFabrikat;
                     auft.KfzKennzeichen = auftrag.KfzKennzeichen;
                     auft.VersicherterName = auftrag.VersicherterName;
                     auft.VersicherterVorname = auftrag.VersicherterVorname;
@@ -287,14 +302,14 @@ namespace MIS_TDP.Controller
             DeleteVersicherung(versicherung);
         }
 
-        public static IList<TblVersicherung> GetVersicherungen()
+        public static ObservableCollection<TblVersicherung> GetVersicherungen()
         {
             IList<TblVersicherung> versicherungen;
             using (var context = new DatabaseContext(ConnectionString))
             {
                 versicherungen = (from tblVersicherung in context.TblVersicherung select tblVersicherung).ToList();
             }
-            return versicherungen;
+            return toObservableCollection<TblVersicherung>(versicherungen);
         }
 
         public static TblVersicherung GetVersicherung(int VersicherungsNr)
@@ -429,20 +444,5 @@ namespace MIS_TDP.Controller
         //}
 
         #endregion
-
-
-
-        private static ObservableCollection<T> toObservableCollection<T>(IEnumerable<T> enumerable)
-        {
-
-            var col = new ObservableCollection<T>();
-            foreach (var cur in enumerable)
-            {
-                col.Add(cur);
-            }
-            return col;
-        }
-
-
     }
 }

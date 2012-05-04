@@ -22,7 +22,7 @@ namespace MIS_TDP
         public FabrikateViewModel()
         {
             //this.loadSampleData();
-            //this.loadDBData();
+            this.loadDBData();
         }
 
         private void loadDBData()
