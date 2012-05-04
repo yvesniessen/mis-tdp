@@ -34,6 +34,9 @@ namespace MIS_TDP
 
             TblAuftrag test = new TblAuftrag();
             test.GeschaetzterSchaden = 500;
+            test.KfzKennzeichen = "AC-YN 1";
+            test.VersicherterVorname = "Heinz";
+            test.VersicherterName = "Peter";
 
             Controller.DatabaseController.AddAuftrag(test);
 
