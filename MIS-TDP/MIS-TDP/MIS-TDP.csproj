@@ -89,12 +89,17 @@
     <Compile Include="DataModel\TblFabrikat.cs" />
     <Compile Include="DataModel\TblVersicherung.cs" />
     <Compile Include="TestField\DataSetController.cs" />
+    <Compile Include="View\VersicherungPage.xaml.cs">
+      <DependentUpon>VersicherungPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AuftraegeViewModel.cs" />
     <Compile Include="ViewModel\AuftragViewModel.cs" />
     <Compile Include="ViewModel\FabrikateViewModel.cs" />
+    <Compile Include="ViewModel\FabrikatViewModel.cs" />
     <Compile Include="ViewModel\VersicherteViewModel.cs" />
     <Compile Include="ViewModel\KraftfahrzeugeViewModel.cs" />
     <Compile Include="ViewModel\VersicherungenViewModel.cs" />
+    <Compile Include="ViewModel\VersicherungViewModel.cs" />
     <Compile Include="View\AuftraegePage.xaml.cs">
       <DependentUpon>AuftraegePage.xaml</DependentUpon>
     </Compile>
@@ -103,6 +108,9 @@
     </Compile>
     <Compile Include="View\FabrikatePage.xaml.cs">
       <DependentUpon>FabrikatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FabrikatPage.xaml.cs">
+      <DependentUpon>FabrikatPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\KraftfahrzeugePage.xaml.cs">
       <DependentUpon>KraftfahrzeugePage.xaml</DependentUpon>
@@ -131,6 +139,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="View\VersicherungPage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\FabrikatPage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\VersicherungenPage.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
