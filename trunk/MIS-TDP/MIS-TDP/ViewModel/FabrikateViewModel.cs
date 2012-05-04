@@ -27,14 +27,14 @@ namespace MIS_TDP
 
         private void loadDBData()
         {
-
+            items = Controller.DatabaseController.GetFabrikate();
         }
 
         #endregion
 
         #region properties
-        private ObservableCollection<Fabrikat> items = new ObservableCollection<Fabrikat>();
-        public ObservableCollection<Fabrikat> Items
+        private ObservableCollection<TblFabrikat> items = new ObservableCollection<TblFabrikat>();
+        public ObservableCollection<TblFabrikat> Items
         {
             get
             {

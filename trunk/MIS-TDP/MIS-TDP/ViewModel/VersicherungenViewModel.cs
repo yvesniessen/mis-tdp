@@ -31,8 +31,8 @@ namespace MIS_TDP
         #endregion
 
         #region properties
-        private ObservableCollection<Versicherung> items = new ObservableCollection<Versicherung>();
-        public ObservableCollection<Versicherung> Items
+        private ObservableCollection<TblVersicherung> items = new ObservableCollection<TblVersicherung>();
+        public ObservableCollection<TblVersicherung> Items
         {
             get
             {
