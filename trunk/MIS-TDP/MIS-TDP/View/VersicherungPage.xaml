@@ -1,0 +1,48 @@
+﻿<phone:PhoneApplicationPage 
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+	x:Class="MIS_TDP.VersicherungPage"
+	FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	Foreground="{StaticResource PhoneForegroundBrush}"
+	Orientation="Portrait"
+	shell:SystemTray.IsVisible="True">
+
+	<!--Das LayoutRoot-Objekt ist das Stammraster, das den gesamten Seiteninhalt aufnimmt.-->
+	<Grid x:Name="LayoutRoot" Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<!--Das TitlePanel-Objekt enthält den Namen der Anwendung und den Seitentitel.-->
+		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+			<TextBlock x:Name="ApplicationTitle" Text="STAMMDATEN" Style="{StaticResource PhoneTextNormalStyle}"/>
+			<TextBlock x:Name="PageTitle" Text="versicherung" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+		</StackPanel>
+
+		<!--ContentPanel-Objekt - Fügen Sie zusätzlichen Inhalt hier ein.-->
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+			<TextBlock Margin="10,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0" Text="Versicherungnummer"/>
+			<TextBox x:Name="FabrikatnummerTextBox" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.AuftragNr, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number"/>
+			<TextBlock Margin="10,92,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0" Text="Name"/>
+			<TextBox x:Name="BezeichnungTextBox" Margin="-5,111,-5,0" TextWrapping="Wrap" Text="{Binding Item.AuftragNr, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number"/>
+			<Button Content="Speichern" HorizontalAlignment="Left" Margin="23,0,0,8" VerticalAlignment="Bottom" Width="210" Height="210" VerticalContentAlignment="Bottom" Padding="10,3,10,0" BorderBrush="{x:Null}">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<ec:CallMethodAction MethodName="AddAuftrag"  TargetObject="{Binding}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+				<Button.Background>
+					<ImageBrush ImageSource="Ressourcen/Senden.png" />
+				</Button.Background>
+			</Button>
+		</Grid>
+	</Grid>
+</phone:PhoneApplicationPage>
