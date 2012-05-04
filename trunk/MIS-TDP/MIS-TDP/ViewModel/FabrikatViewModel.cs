@@ -18,16 +18,10 @@
             #region Constructor
             public FabrikatViewModel()
             {
-                //this.loadSampleData();
-
-                //Todo: nur Testdaten, hier muss entsprechende ID des Auftrags geladen werden mit dem Page aufgerufen wurde
-
+                //@Gruppe: muss das hier hin ich habe KA
+                this.item = new TblFabrikat();
             }
 
-            private void loadSampleData()
-            {
-
-            }
             #endregion
 
             #region properties

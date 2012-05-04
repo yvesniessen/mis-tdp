@@ -12,7 +12,8 @@
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	Orientation="Portrait"
-	shell:SystemTray.IsVisible="True">
+	shell:SystemTray.IsVisible="True"
+    DataContext="{Binding Source={StaticResource VersicherungViewModel}}">
 
 	<!--Das LayoutRoot-Objekt ist das Stammraster, das den gesamten Seiteninhalt aufnimmt.-->
 	<Grid x:Name="LayoutRoot" Background="Transparent">
@@ -36,12 +37,9 @@
 			<Button Content="Speichern" HorizontalAlignment="Left" Margin="23,0,0,8" VerticalAlignment="Bottom" Width="210" Height="210" VerticalContentAlignment="Bottom" Padding="10,3,10,0" BorderBrush="{x:Null}">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="Click">
-						<ec:CallMethodAction MethodName="AddAuftrag"  TargetObject="{Binding}" />
+						<ec:CallMethodAction MethodName="AddVersicherung"  TargetObject="{Binding}" />
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
-				<Button.Background>
-					<ImageBrush ImageSource="Ressourcen/Senden.png" />
-				</Button.Background>
 			</Button>
 		</Grid>
 	</Grid>
