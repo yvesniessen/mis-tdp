@@ -189,6 +189,7 @@
     <Content Include="lib\Microsoft.Live.dll" />
     <Content Include="lib\Microsoft.Phone.Controls.dll" />
     <Content Include="lib\Microsoft.Phone.Controls.Toolkit.dll" />
+    <Content Include="lib\System.Windows.Interactivity.dll" />
     <Content Include="Ressourcen\appbar.add.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
