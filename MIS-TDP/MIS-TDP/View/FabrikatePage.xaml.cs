@@ -28,7 +28,8 @@ namespace MIS_TDP
 
         private void ApplicationBarButtonUpdateClick(object sender, System.EventArgs e)
         {
-            
+            //DAS KLAPPT NICHT!!!!!
+            //(this.DataContext as FabrikateViewModel).loadDBData();
         }
     }
 }

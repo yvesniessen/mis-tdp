@@ -25,9 +25,9 @@ namespace MIS_TDP
             this.loadDBData();
         }
 
-        private void loadDBData()
+        public void loadDBData()
         {
-            items = Controller.DatabaseController.GetFabrikate();
+            this.items = Controller.DatabaseController.GetFabrikate();
         }
 
         #endregion
