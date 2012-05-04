@@ -22,6 +22,8 @@ namespace MIS_TDP
 
          //Todo: nur Testdaten, hier muss entsprechende ID des Auftrags geladen werden mit dem Page aufgerufen wurde
             this.item = Controller.DatabaseController.GetAuftrag(1);
+            this.Versicherungen = Controller.DatabaseController.GetVersicherungen();
+            this.Fabrikate = Controller.DatabaseController.GetFabrikate();
         }
 
         private void loadSampleData()
@@ -35,6 +37,7 @@ namespace MIS_TDP
         #endregion 
 
         #region properties
+
         private TblAuftrag item;
         public TblAuftrag Item
         {
@@ -50,7 +53,7 @@ namespace MIS_TDP
             }
         }
 
-
+        
 
         private ObservableCollection<TblVersicherung> VersicherungenItems = new ObservableCollection<TblVersicherung>();
         public ObservableCollection<TblVersicherung> Versicherungen
