@@ -82,6 +82,15 @@ public partial class TblAuftrag : INotifyPropertyChanging, INotifyPropertyChange
 		this._TblVersicherung = default(EntityRef<TblVersicherung>);
 		OnCreated();
 	}
+
+    public String Versicherter
+    {
+        get
+        {
+            return VersicherterName + ", " + VersicherterVorname;
+        }
+    }
+
 	
 	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="auftragNr", Storage="_AuftragNr", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 	public int AuftragNr
