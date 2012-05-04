@@ -23,7 +23,7 @@ namespace MIS_TDP
             this.loadDBData();
         }
 
-        private void loadDBData()
+        public void loadDBData()
         {
             this.items = Controller.DatabaseController.GetVersicherungen();
         }
