@@ -70,6 +70,7 @@
     <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -78,17 +79,20 @@
     <Compile Include="Controller\DatabaseController.cs" />
     <Compile Include="Controller\MailController.cs" />
     <Compile Include="ConvertibleTypeConverter.cs" />
+    <Compile Include="DataModel\BusinessObjects\DataBaseReport.cs" />
     <Compile Include="DataModel\DatabaseContext.cs" />
     <Compile Include="DataModel\DataModelBase.cs" />
     <Compile Include="DataModel\DataModelExample.cs" />
     <Compile Include="DataModel\DebugWriter.cs" />
     <Compile Include="DelegatesAndCommands\DelegateCommand.cs" />
-    <Compile Include="DataModel\BusinessObjects\BusinessObject.cs" />
     <Compile Include="DataModel\TblAttachment.cs" />
     <Compile Include="DataModel\TblAuftrag.cs" />
     <Compile Include="DataModel\TblFabrikat.cs" />
     <Compile Include="DataModel\TblVersicherung.cs" />
     <Compile Include="TestField\DataSetController.cs" />
+    <Compile Include="TestField\TestPage3.xaml.cs">
+      <DependentUpon>TestPage3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\VersicherungPage.xaml.cs">
       <DependentUpon>VersicherungPage.xaml</DependentUpon>
     </Compile>
@@ -139,6 +143,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="TestField\TestPage3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\VersicherungPage.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>

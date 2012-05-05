@@ -21,7 +21,7 @@ namespace MIS_TDP
     {
         #region members
         MailController mc = new MailController();
-        private LiveConnectClient client;
+        //private LiveConnectClient client;
         #endregion
 
         #region constructor
@@ -40,20 +40,20 @@ namespace MIS_TDP
 
         private void signInButton1_SessionChanged(object sender, LiveConnectSessionChangedEventArgs e)
         {
-            if (e.Status == LiveConnectSessionStatus.Connected)
-            {
-                client = new LiveConnectClient(e.Session);
-                this.textBlockSingStatus.Text = "signed in.";
-                client.GetCompleted +=
-                    new EventHandler<LiveOperationCompletedEventArgs>(OnGetCompleted);
-                client.GetAsync("me", null);
-            }
+            //if (e.status == liveconnectsessionstatus.connected)
+            //{
+            //    client = new liveconnectclient(e.session);
+            //    this.textblocksingstatus.text = "signed in.";
+            //    client.getcompleted +=
+            //        new eventhandler<liveoperationcompletedeventargs>(ongetcompleted);
+            //    client.getasync("me", null);
+            //}
 
-            else
-            {
-                this.textBlockSingStatus.Text = "Not signed in.";
-                client = null;
-            }
+            //else
+            //{
+            //    this.textblocksingstatus.text = "not signed in.";
+            //    client = null;
+            //}
         }
         #endregion
 
