@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Diagnostics;
+using System.IO;
 
 namespace MIS_TDP.DataModel.BusinessObjects
 {
@@ -38,7 +39,12 @@ namespace MIS_TDP.DataModel.BusinessObjects
             Debug.WriteLine("CREATE XML FILE");
             XmlSerializer ser = new XmlSerializer(typeof(DataBaseReport));
 
-            ser.Serialize(Console.Out, this);
+           // ser.Serialize(Console.Out, Aufträge);
+            using (var sw = new StreamWriter(@"c:\test.xml"))
+            {
+                var serializer = new XmlSerializer(typeof(List<TblAuftrag>));
+                serializer.Serialize(sw, Aufträge);
+            }
         }
     }
 }
