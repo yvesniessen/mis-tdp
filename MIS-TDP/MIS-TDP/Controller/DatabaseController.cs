@@ -11,21 +11,13 @@ using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
+using MIS_TDP.DataModel.BusinessObjects;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
 namespace MIS_TDP.Controller
 {
-    public struct DatabaseReport
-    {
-        public int numOfAufträge;
-        public List<TblAuftrag> Aufträge;
-        public int numOfVersicherungen;
-        public List<TblVersicherung> Versicherungen;
-        public int numOfAttachments;
-        public List<TblAttachment> Attachments;
-        public int numofFabrikate;
-        public List<TblFabrikat> Fabrikate;
-    }
-
+  
     public static class DatabaseController
     {
         private const string ConnectionString = @"isostore:/Database.sdf";
@@ -44,7 +36,6 @@ namespace MIS_TDP.Controller
         }
 
         #endregion
-
 
         #region Generelle Datenbank-Befehle (create delete Report)
 
@@ -73,19 +64,26 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static DatabaseReport ReportDatabase()
+        /**
+        public void ReportDatabaseHandler(object sender, EventArgs e)
         {
-            DatabaseReport result = new DatabaseReport();
+            ReportDatabase();
+        }
+        **/
 
-            result.Aufträge = GetAuftraege().ToList<TblAuftrag>();
-            result.numOfAufträge = result.Aufträge.Count();
-            result.Attachments = GetAttachments().ToList<TblAttachment>();
-            result.numOfAttachments = result.Attachments.Count();
-            result.Versicherungen = GetVersicherungen().ToList<TblVersicherung>();
-            result.numOfVersicherungen = result.Versicherungen.Count();
+        public static DataBaseReport ReportDatabase()
+        {
+            Debug.WriteLine("Database-Report");
+            DataBaseReport result = new DataBaseReport();
+            result.Aufträge = GetAuftraege().ToList<TblAuftrag>();          
+            result.Attachments = GetAttachments().ToList<TblAttachment>();          
+            result.Versicherungen = GetVersicherungen().ToList<TblVersicherung>();          
             result.Fabrikate = GetFabrikate().ToList<TblFabrikat>();
-            result.numofFabrikate = result.Fabrikate.Count();
+            Debug.WriteLine("CREATE XML FILE");
+            XmlSerializer ser = new XmlSerializer(typeof(DataBaseReport));
 
+            ser.Serialize(Console.Out, result);
+            //result.XMLSerialize();
             return result;
         }
 

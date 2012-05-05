@@ -83,7 +83,7 @@
             <HyperlinkButton Name="buttonDevView" Content="DevView" Margin="121,0,109,4" Grid.Row="2" VerticalAlignment="Bottom" d:LayoutOverrides="Width" Height="28" Grid.ColumnSpan="2" Visibility="Collapsed">
             	<i:Interaction.Triggers>
             		<i:EventTrigger EventName="Click">
-            			<ec:NavigateToPageAction TargetPage="/View/TestPage1.xaml"/>
+            			<ec:NavigateToPageAction TargetPage="/TestField/TestPage3.xaml"/>
             		</i:EventTrigger>
             	</i:Interaction.Triggers>
             </HyperlinkButton>
