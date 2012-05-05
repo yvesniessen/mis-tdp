@@ -14,6 +14,8 @@ using System.Collections.ObjectModel;
 using MIS_TDP.DataModel.BusinessObjects;
 using System.Diagnostics;
 using System.Xml.Serialization;
+using System.IO;
+using System.Xml;
 
 namespace MIS_TDP.Controller
 {
@@ -71,7 +73,7 @@ namespace MIS_TDP.Controller
         }
         **/
 
-        public static DataBaseReport ReportDatabase()
+        public static void ReportDatabase()
         {
             Debug.WriteLine("Database-Report");
             DataBaseReport result = new DataBaseReport();
@@ -79,12 +81,24 @@ namespace MIS_TDP.Controller
             result.Attachments = GetAttachments().ToList<TblAttachment>();          
             result.Versicherungen = GetVersicherungen().ToList<TblVersicherung>();          
             result.Fabrikate = GetFabrikate().ToList<TblFabrikat>();
-            Debug.WriteLine("CREATE XML FILE");
-            XmlSerializer ser = new XmlSerializer(typeof(DataBaseReport));
+            
 
-            ser.Serialize(Console.Out, result);
-            //result.XMLSerialize();
-            return result;
+     
+            //XmlSerializer serializer = new XmlSerializer(typeof(DataBaseReport));
+            //FileStream fs = new FileStream("Personenliste.xml", FileMode.Create);
+            //serializer.Serialize(fs, result);
+            //fs.Close(); 
+            //ser.Serialize(Console.Out, result);
+             result.XMLSerialize();
+            //return result;
+        }
+
+        public static void SaveXmlSerialiableElement<T>(this XmlWriter writer, String elementName, T element) where T : IXmlSerializable
+        {
+            writer.WriteStartElement(elementName);
+            writer.WriteAttributeString("TYPE", element.GetType().AssemblyQualifiedName);
+            element.WriteXml(writer);
+            writer.WriteEndElement();
         }
 
         #endregion
