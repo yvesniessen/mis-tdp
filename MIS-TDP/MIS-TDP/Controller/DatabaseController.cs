@@ -66,6 +66,7 @@ namespace MIS_TDP.Controller
             }
         }
 
+        #region Database Reporting
         /**
         public void ReportDatabaseHandler(object sender, EventArgs e)
         {
@@ -93,6 +94,13 @@ namespace MIS_TDP.Controller
             //return result;
         }
 
+        /// <summary>
+        /// Saves the XML serialiable element.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="writer">The writer.</param>
+        /// <param name="elementName">Name of the element.</param>
+        /// <param name="element">The element.</param>
         public static void SaveXmlSerialiableElement<T>(this XmlWriter writer, String elementName, T element) where T : IXmlSerializable
         {
             writer.WriteStartElement(elementName);
@@ -100,6 +108,7 @@ namespace MIS_TDP.Controller
             element.WriteXml(writer);
             writer.WriteEndElement();
         }
+        #endregion
 
         #endregion
 
