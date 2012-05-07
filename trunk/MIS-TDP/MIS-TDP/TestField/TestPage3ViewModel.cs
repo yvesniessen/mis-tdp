@@ -19,7 +19,7 @@ namespace MIS_TDP
 {
     public class TestPage3ViewModel : ViewModelBase
     {
-        public void ExportToCsv()
+        public void ExportToCsvAndXml()
         {            
             using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
