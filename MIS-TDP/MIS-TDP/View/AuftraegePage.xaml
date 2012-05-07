@@ -1,16 +1,18 @@
-﻿<phone:PhoneApplicationPage
+﻿<local:PageBase 
+    x:Class="MIS_TDP.AuftraegePage"
+    
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
 	xmlns:local="clr-namespace:MIS_TDP" 
-    x:Class="MIS_TDP.AuftraegePage"
-	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
-	Orientation="Portrait"
-	shell:SystemTray.IsVisible="True">
+    
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+	SupportedOrientations="Portrait" Orientation="Portrait">
 
 	<phone:PhoneApplicationPage.FontFamily>
 		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
@@ -25,15 +27,15 @@
 	<phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False">
             <shell:ApplicationBar.MenuItems>
-            	<shell:ApplicationBarMenuItem IsEnabled="True" Text="Neuer Auftrag"/>
-            	<shell:ApplicationBarMenuItem IsEnabled="True" Text="Liste aktualisieren"/>
+                <shell:ApplicationBarMenuItem x:Name="NeuerAuftragApplicationBarMenuItem" IsEnabled="True" Text="Neuer Auftrag" Click="NeuerAuftragApplicationBarMenuItem_Click"/>
+                <shell:ApplicationBarMenuItem x:Name="UpdateApplicationBarMenuItem" IsEnabled="True" Text="Liste aktualisieren" Click="UpdateApplicationBarMenuItem_Click"/>
             </shell:ApplicationBar.MenuItems>
-            <shell:ApplicationBarIconButton IconUri="/Ressourcen/appbar.add.rest.png" Text="neu"/>
-            <shell:ApplicationBarIconButton IconUri="/Ressourcen/appbar.sync.rest.png" Text="update"/>
+            <shell:ApplicationBarIconButton x:Name="NeuerAuftragApplicationBarIconButton" IconUri="/Ressourcen/appbar.add.rest.png" Text="neu" Click="NeuerAuftragApplicationBarIconButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="UpdateApplicationBarIconButton" IconUri="/Ressourcen/appbar.sync.rest.png" Text="update" Click="UpdateApplicationBarIconButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
-    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{Binding Source={StaticResource AuftraegeViewModel}}">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
@@ -47,7 +49,7 @@
 
 		<!--ContentPanel-Objekt - Fügen Sie zusätzlichen Inhalt hier ein.-->
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<ListBox Margin="12,0,0,12" ItemsSource="{Binding Items}" >
+            <ListBox x:Name="ItemsListBox"   Margin="12,0,0,12" ItemsSource="{Binding Items}" SelectionChanged="ItemsListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
@@ -57,14 +59,14 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 
-                <i:Interaction.Triggers>
+                <!--<i:Interaction.Triggers>
 					<i:EventTrigger EventName="SelectionChanged">
 						<ec:NavigateToPageAction TargetPage="/View/AuftragPage.xaml"/>
 					</i:EventTrigger>
-				</i:Interaction.Triggers>
+				</i:Interaction.Triggers>-->
 			
 			</ListBox>
 		</Grid>
 	</Grid>
 	
-</phone:PhoneApplicationPage>
+</local:PageBase>

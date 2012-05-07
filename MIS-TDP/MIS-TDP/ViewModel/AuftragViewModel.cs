@@ -10,6 +10,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Collections.Generic;
+using MIS_TDP.Controller;
 
 namespace MIS_TDP
 {
@@ -18,23 +20,42 @@ namespace MIS_TDP
         #region Constructor
         public AuftragViewModel()
         {
-            //this.loadSampleData();
-
-         //Todo: nur Testdaten, hier muss entsprechende ID des Auftrags geladen werden mit dem Page aufgerufen wurde
-            this.item = databaseController.GetAuftrag(1);
-            this.Versicherungen = databaseController.GetVersicherungen();
-            this.Fabrikate = databaseController.GetFabrikate();
+            this.saveAuftragCommand = new DelegateCommand(this.SaveAuftragAction);
+            this.VersicherungenItems = databaseController.GetVersicherungen();
+            this.FabrikateItems = databaseController.GetFabrikate();
         }
+        #endregion
 
-        private void loadSampleData()
+        public override void Initialize(IDictionary<string, string> parameters)
         {
-            System.Uri resourceUri = new System.Uri("/MIS-TDP;component/SampleData/AuftragViewModelSampleData.xaml", System.UriKind.Relative);
-            if (System.Windows.Application.GetResourceStream(resourceUri) != null)
+            base.Initialize(parameters);
+
+            if (parameters == null)
             {
-                System.Windows.Application.LoadComponent(this, resourceUri);
+                return;
+            }
+
+            string auftragNrString = null;
+            if (!parameters.TryGetValue("AuftragNr", out auftragNrString))
+            {
+                //neuer Auftrag
+                this.IsNewItem = true;
+                this.Item = new TblAuftrag();
+            }
+            else
+            {
+                //Auftrag laden
+                int auftragNr = -1;
+                int.TryParse(auftragNrString, out auftragNr);
+
+                if (auftragNr != -1)
+                {
+                    this.IsNewItem = false;
+                    this.Item = databaseController.GetAuftrag(auftragNr);
+                }
             }
         }
-        #endregion 
+        
 
         #region properties
 
@@ -53,7 +74,20 @@ namespace MIS_TDP
             }
         }
 
-        
+        private Boolean _isNewItem;
+        public Boolean IsNewItem
+        {
+            get
+            {
+                return _isNewItem;
+            }
+            set
+            {
+                _isNewItem = value;
+                OnPropertyChanged("IsNewItem");
+                Debug.WriteLine("Property: IsNewItem");
+            }
+        }
 
         private ObservableCollection<TblVersicherung> VersicherungenItems = new ObservableCollection<TblVersicherung>();
         public ObservableCollection<TblVersicherung> Versicherungen
@@ -88,14 +122,32 @@ namespace MIS_TDP
 
         #region ButtonCommands
 
-        public  void AddAuftrag()
+        private ICommand saveAuftragCommand;
+        public ICommand SaveAuftragCommand
         {
-            TblAuftrag neuerAuftrag  = new TblAuftrag();
-            neuerAuftrag = item;
-
-            databaseController.AddAuftrag(neuerAuftrag);
+            get
+            {
+                return this.saveAuftragCommand;
+            }
         }
 
+        private void SaveAuftragAction(object o)
+        {
+            if (this.Item == null)
+            {
+                return;
+            }
+
+            if (this.IsNewItem)
+            {
+                databaseController.AddAuftrag(this.Item);
+                this.IsNewItem = false;
+            }
+            else
+            {
+                databaseController.UpdateAuftrag(this.Item);
+            }
+        }
         #endregion
     }
 }

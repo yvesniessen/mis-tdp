@@ -85,6 +85,8 @@
     <Compile Include="DataModel\DataModelBase.cs" />
     <Compile Include="DataModel\DataModelExample.cs" />
     <Compile Include="DataModel\DebugWriter.cs" />
+    <Compile Include="DataModel\TblFabrikatExtention.cs" />
+    <Compile Include="DataModel\TblVersicherungExtention.cs" />
     <Compile Include="DelegatesAndCommands\DelegateCommand.cs" />
     <Compile Include="DataModel\TblAttachment.cs" />
     <Compile Include="DataModel\TblAuftrag.cs" />
@@ -94,6 +96,9 @@
     <Compile Include="TestField\TestPage3.xaml.cs">
       <DependentUpon>TestPage3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\INavigationService.cs" />
+    <Compile Include="ViewModel\SimpleNavigationService.cs" />
+    <Compile Include="View\PageBase.cs" />
     <Compile Include="TestField\TestPage3ViewModel.cs" />
     <Compile Include="View\VersicherungPage.xaml.cs">
       <DependentUpon>VersicherungPage.xaml</DependentUpon>

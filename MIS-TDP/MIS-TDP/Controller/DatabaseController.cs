@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using System.Collections.Generic;
-using System.Linq;
 using System.Collections.ObjectModel;
-using MIS_TDP.DataModel.BusinessObjects;
 using System.Diagnostics;
-using System.Xml.Serialization;
-using System.IO;
+using System.Linq;
 using System.Xml;
+using System.Xml.Serialization;
+using MIS_TDP.DataModel.BusinessObjects;
+using System.Data.Linq;
 
 namespace MIS_TDP.Controller
 {
@@ -57,6 +48,14 @@ namespace MIS_TDP.Controller
         #endregion
 
         #region Generelle Datenbank-Befehle (create delete Report)
+
+        public Boolean DatabaseExists()
+        {
+            using (var context = new DatabaseContext(ConnectionString))
+            {
+                return context.DatabaseExists();
+            }
+        }
 
         public void CreateDatabase()
         {
@@ -279,6 +278,12 @@ namespace MIS_TDP.Controller
             TblAuftrag auftrag;
             using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
+                DataLoadOptions lo = new DataLoadOptions();
+                lo.LoadWith<TblAuftrag>(a => a.TblVersicherung);
+                lo.LoadWith<TblAuftrag>(a => a.TblFabrikat);
+
+                context.LoadOptions = lo;
+
                 //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
                 auftrag = (from tblAuftrag in context.TblAuftrag
                            where tblAuftrag.AuftragNr == AuftragNr
