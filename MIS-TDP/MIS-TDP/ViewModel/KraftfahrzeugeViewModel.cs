@@ -33,7 +33,7 @@ namespace MIS_TDP
 
         private void loadDBData()
         {
-            this.items = databaseController.GetFabrikate();
+            this.Items = databaseController.GetFabrikate();
         }
         #endregion 
 

@@ -49,7 +49,7 @@
             public void AddFabrikat()
             {
                 TblFabrikat neuesFabrikat = new TblFabrikat();
-                neuesFabrikat = item;
+                neuesFabrikat = Item;
 
                 databaseController.AddFabrikat(neuesFabrikat);
             }

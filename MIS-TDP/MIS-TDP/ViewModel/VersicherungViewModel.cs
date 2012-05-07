@@ -21,7 +21,7 @@ namespace MIS_TDP
             //this.loadSampleData();
 
             //Todo: nur Testdaten, hier muss entsprechende ID des Auftrags geladen werden mit dem Page aufgerufen wurde
-
+            item = new TblVersicherung();
         }
 
         private void loadSampleData()

@@ -18,7 +18,7 @@
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
             <shell:ApplicationBarIconButton Click="ApplicationBarButtonAddClick" IconUri="/icons/appbar.add.rest.png" IsEnabled="True" Text="neu"/>
-            <shell:ApplicationBarIconButton  IconUri="/Ressourcen/appbar.sync.rest.png" IsEnabled="True" Text="update"/>
+            <shell:ApplicationBarIconButton Click="ApplicationBarButtonUpdateClick" IconUri="/Ressourcen/appbar.sync.rest.png" IsEnabled="True" Text="update"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
