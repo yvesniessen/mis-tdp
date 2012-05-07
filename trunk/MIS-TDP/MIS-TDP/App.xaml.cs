@@ -227,7 +227,7 @@ namespace MIS_TDP
         {
             TblAuftrag test = new TblAuftrag();
             test.GeschaetzterSchaden = 500;
-            test.KfzKennzeichen = "AC-YN 1";
+            test.KfzKennzeichen = "AC-HP 1";
             test.VersicherterVorname = "Heinz";
             test.VersicherterName = "Peter";
             test.KfzFabrikatNr = this.fabrikate[0].ID;
@@ -236,9 +236,9 @@ namespace MIS_TDP
 
             TblAuftrag test1 = new TblAuftrag();
             test1.GeschaetzterSchaden = 700;
-            test1.KfzKennzeichen = "AC-PP 2";
-            test1.VersicherterVorname = "Paul";
-            test1.VersicherterName = "Puemmel";
+            test1.KfzKennzeichen = "AC-MM 1";
+            test1.VersicherterVorname = "Max";
+            test1.VersicherterName = "Mustermann";
             test1.KfzFabrikatNr = this.fabrikate[1].ID;// databaseController.GetFabrikat(this.fabrikate[1].ID);
             test1.VersicherungNr = this.versicherungen[1].VersicherungNr;
             databaseController.AddAuftrag(test1);
