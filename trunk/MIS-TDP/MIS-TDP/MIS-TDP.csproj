@@ -240,6 +240,7 @@
     <Resource Include="Ressourcen\Senden.png" />
     <Content Include="Ressourcen\SplashScreenImage.jpg" />
     <Resource Include="Ressourcen\Versicherte.png" />
+    <Resource Include="Ressourcen\Stammdaten_2.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

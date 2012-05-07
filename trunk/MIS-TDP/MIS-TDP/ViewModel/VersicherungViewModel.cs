@@ -10,6 +10,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Collections.Generic;
+using MIS_TDP.Controller;
 
 namespace MIS_TDP
 {
@@ -18,10 +20,37 @@ namespace MIS_TDP
         #region Constructor
         public VersicherungViewModel()
         {
-            //this.loadSampleData();
+            this.saveVersicherungCommand = new DelegateCommand(this.SaveVersicherungAction);
+        }
 
-            //Todo: nur Testdaten, hier muss entsprechende ID des Auftrags geladen werden mit dem Page aufgerufen wurde
-            item = new TblVersicherung();
+        public override void Initialize(IDictionary<string, string> parameters)
+        {
+            base.Initialize(parameters);
+
+            if (parameters == null)
+            {
+                return;
+            }
+
+            string versicherungNrString = null;
+            if (!parameters.TryGetValue("VersicherungNr", out versicherungNrString))
+            {
+                //neue Versicherung
+                this.IsNewItem = true;
+                this.Item = new TblVersicherung();
+            }
+            else
+            {
+                //Versicherung laden
+                int versicherungNr = -1;
+                int.TryParse(versicherungNrString, out versicherungNr);
+
+                if (versicherungNr != -1)
+                {
+                    this.IsNewItem = false;
+                    this.Item = databaseController.GetVersicherung(versicherungNr);
+                }
+            }
         }
 
         private void loadSampleData()
@@ -47,19 +76,52 @@ namespace MIS_TDP
             }
         }
 
+        private Boolean _isNewItem;
+        public Boolean IsNewItem
+        {
+            get
+            {
+                return _isNewItem;
+            }
+            set
+            {
+                _isNewItem = value;
+                OnPropertyChanged("IsNewItem");
+                Debug.WriteLine("Property: IsNewItem");
+            }
+        }
+
 
         #endregion
 
         #region ButtonCommands
 
-        public void AddVersicherung()
+      private ICommand saveVersicherungCommand;
+        public ICommand SaveVersicherungCommand
         {
-            TblVersicherung neueVersicherung = new TblVersicherung();
-            neueVersicherung = item;
-
-            databaseController.AddVersicherung(neueVersicherung);
+            get
+            {
+                return this.saveVersicherungCommand;
+            }
         }
 
+        private void SaveVersicherungAction(object o)
+        {
+            if (this.Item == null || this.Item.Name == null)
+            {
+                return;
+            }
+
+            if (this.IsNewItem)
+            {
+                databaseController.AddVersicherung(this.Item);
+                this.IsNewItem = false;
+            }
+            else
+            {
+                databaseController.UpdateVersicherung(this.Item);
+            }
+        }
         #endregion
     }
 }

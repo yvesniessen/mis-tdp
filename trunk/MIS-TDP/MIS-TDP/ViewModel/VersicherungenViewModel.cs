@@ -1,16 +1,8 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows.Input;
+using MIS_TDP.Controller;
 
 namespace MIS_TDP
 {
@@ -19,16 +11,18 @@ namespace MIS_TDP
         #region Constructor
         public VersicherungenViewModel()
         {
-            //this.loadSampleData();
-            this.loadDBData();
+            this._EditVersicherungCommand = new DelegateCommand(this.EditVersicherungAction);
+            this._NeueVersicherungCommand = new DelegateCommand(this.NeueVersicherungAction);
+            this._UpdateCommand = new DelegateCommand(this.UpdateVersicherungAction);
         }
+        #endregion
 
-        public void loadDBData()
+        public override void Initialize(IDictionary<string, string> parameters)
         {
+            base.Initialize(parameters);
+
             this.Items = databaseController.GetVersicherungen();
         }
-
-        #endregion
 
         #region properties
         private ObservableCollection<TblVersicherung> items = new ObservableCollection<TblVersicherung>();
@@ -48,7 +42,67 @@ namespace MIS_TDP
         #endregion
 
         #region ButtonCommands
+        private ICommand _EditVersicherungCommand;
+        public ICommand EditVersicherungCommand
+        {
+            get
+            {
+                return this._EditVersicherungCommand;
+            }
+        }
 
+        private void EditVersicherungAction(object a)
+        {
+            TblVersicherung versicherung = a as TblVersicherung;
+            if (versicherung == null)
+            {
+                return;
+            }
+            INavigationService navigationService = this.GetService<INavigationService>();
+            if (navigationService == null)
+            {
+                return;
+            }
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("VersicherungNr", versicherung.VersicherungNr.ToString());
+
+            navigationService.Navigate("/View/VersicherungPage.xaml", parameters);
+        }
+
+        private ICommand _NeueVersicherungCommand;
+        public ICommand NeueVersicherungCommand
+        {
+            get
+            {
+                return this._NeueVersicherungCommand;
+            }
+        }
+
+        private void NeueVersicherungAction(object a)
+        {
+            INavigationService navigationService = this.GetService<INavigationService>();
+            if (navigationService == null)
+            {
+                return;
+            }
+
+            navigationService.Navigate("/View/VersicherungPage.xaml");
+        }
+
+        private ICommand _UpdateCommand;
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                return this._UpdateCommand;
+            }
+        }
+
+        private void UpdateVersicherungAction(object a)
+        {
+            this.Items = databaseController.GetVersicherungen();
+        }
         #endregion
     }
 }

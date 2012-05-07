@@ -232,7 +232,6 @@ namespace MIS_TDP
             test.VersicherterName = "Peter";
             test.TblFabrikat = this.fabrikate[0];
             test.TblVersicherung = this.versicherungen[0];
-
             databaseController.AddAuftrag(test);
 
             TblAuftrag test1 = new TblAuftrag();
