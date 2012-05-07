@@ -1,34 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
+﻿using Microsoft.Phone.Controls;
+using MIS_TDP.Controller;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
 
 namespace MIS_TDP
 {
-    public partial class FabrikatePage : PhoneApplicationPage
+    public partial class FabrikatePage : PageBase
     {
         public FabrikatePage()
         {
             InitializeComponent();
+
+            this.DataContext = new FabrikateViewModel();
         }
 
-        private void ApplicationBarButtonAddClick(object sender, System.EventArgs e)
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            Uri uri = new System.Uri("/MIS-TDP;component/View/FabrikatPage.xaml", System.UriKind.Relative);
-            this.NavigationService.Navigate(uri);
+            base.OnNavigatedTo(e);
         }
 
-        private void ApplicationBarButtonUpdateClick(object sender, System.EventArgs e)
+        void ItemsListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            (DataContext as FabrikateViewModel).loadDBData();
+            FabrikateViewModel viewModel = this.DataContext as FabrikateViewModel;
+            ListBox listBox = sender as ListBox;
+
+            if (listBox != null && viewModel != null)
+            {
+                viewModel.EditFabrikatCommand.Execute(listBox.SelectedItem);
+            }
+        }
+
+        private void NeuesFabrikatApplicationBarMenuItem_Click(object sender, System.EventArgs e)
+        {
+            FabrikateViewModel viewModel = this.DataContext as FabrikateViewModel;
+            if (viewModel != null)
+            {
+                viewModel.NeuesFabrikatCommand.Execute(null);
+            }
+        }
+
+        private void UpdateApplicationBarMenuItem_Click(object sender, System.EventArgs e)
+        {
+            FabrikateViewModel viewModel = this.DataContext as FabrikateViewModel;
+            if (viewModel != null)
+            {
+                viewModel.UpdateCommand.Execute(null);
+            }
+        }
+
+        private void NeuesFabrikatApplicationBarIconButton_Click(object sender, System.EventArgs e)
+        {
+            FabrikateViewModel viewModel = this.DataContext as FabrikateViewModel;
+            if (viewModel != null)
+            {
+                viewModel.NeuesFabrikatCommand.Execute(null);
+            }
+        }
+
+        private void UpdateApplicationBarIconButton_Click(object sender, System.EventArgs e)
+        {
+            FabrikateViewModel viewModel = this.DataContext as FabrikateViewModel;
+            if (viewModel != null)
+            {
+                viewModel.UpdateCommand.Execute(null);
+            }
         }
     }
 }

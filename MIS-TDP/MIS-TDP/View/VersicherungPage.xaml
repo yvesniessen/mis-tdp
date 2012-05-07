@@ -31,7 +31,7 @@
         <controls:PivotItem Header="versicherung">
             <Grid>
                 <TextBlock Margin="10,0" TextWrapping="Wrap" Text="Versicherungsnummer" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
-                <TextBox x:Name="VersicherungsnummerTextBox" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.VersicherungNr, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number" />
+                <TextBox x:Name="VersicherungsnummerTextBox" IsEnabled="False" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.VersicherungNr, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number" />
                 <TextBlock Margin="10,99" TextWrapping="Wrap" Text="Bezeichnung" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
                 <TextBox x:Name="BezeichnungTextBox" Margin="-5,123,-5,0" TextWrapping="Wrap" Text="{Binding Item.Name, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="PersonalGivenName" />
             </Grid>

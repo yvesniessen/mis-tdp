@@ -8,6 +8,7 @@
     >
 
 	<!--Anwendungsressourcen-->
+    <!-- DIE KOENNEN DOCH JEZTT WEG!!!-->
     <Application.Resources>
     	<local:AuftragViewModel x:Key="AuftragViewModel" />
         <local:AuftraegeViewModel x:Key="AuftraegeViewModel" />
