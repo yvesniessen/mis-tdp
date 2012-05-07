@@ -32,8 +32,8 @@ namespace MIS_TDP.DataModel.BusinessObjects
         /// <value>
         /// The aufträge.
         /// </value>
-        //[XmlElement("Auftraege")]
-        //public List<TblAuftrag> Aufträge { get; set; }
+        [XmlElement("Auftraege")]
+        public List<TblAuftrag> Aufträge { get; set; }
 
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace MIS_TDP.DataModel.BusinessObjects
         /// <value>
         /// The versicherungen.
         /// </value>
-        //[XmlElement("Versicherungen")]
-        //public List<TblVersicherung> Versicherungen { get; set; }
+        [XmlElement("Versicherungen")]
+        public List<TblVersicherung> Versicherungen { get; set; }
 
         /// <summary>
         /// Gets or sets the attachments.
@@ -51,8 +51,8 @@ namespace MIS_TDP.DataModel.BusinessObjects
         /// <value>
         /// The attachments.
         /// </value>
-        //[XmlElement("Attachments")]
-        //public List<TblAttachment> Attachments { get; set; }
+        [XmlElement("Attachments")]
+        public List<TblAttachment> Attachments { get; set; }
 
         /// <summary>
         /// Gets or sets the fabrikate.
@@ -63,10 +63,13 @@ namespace MIS_TDP.DataModel.BusinessObjects
         [XmlElement("Fabrikate")]
         public List<TblFabrikat> Fabrikate { get; set; }
 
-
+        //Constructor
         public DataBaseReport()
         {
             Fabrikate = new List<TblFabrikat>();
+            Attachments = new List<TblAttachment>();
+            Versicherungen = new List<TblVersicherung>();
+            Aufträge = new List<TblAuftrag>();
         }
 
         #endregion
@@ -87,7 +90,43 @@ namespace MIS_TDP.DataModel.BusinessObjects
         /// </summary>
         public void CSVSerialize()
         {
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
+            {
+                Debug.WriteLine("CREATE CSV FILE");
 
+                using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
+                {
+                    using (IsolatedStorageFileStream stream = myIsolatedStorage.OpenFile("BackupDB.csv", FileMode.Create))
+                    {
+                        StreamWriter sw = new StreamWriter(stream);
+                        sw.WriteLine("ATTACHMENT");
+                        foreach (TblAttachment attachment in this.Attachments)
+                        {
+                            sw.WriteLine(attachment.AttachmentNr.ToString() + "," + attachment.Data + "," + attachment.Typ.ToString());
+                            sw.Flush();
+                        }
+                        sw.WriteLine("AUFTRAG");
+                        foreach (TblAuftrag auftrag in this.Aufträge)
+                        {
+                            sw.WriteLine(auftrag.AuftragNr.ToString() + "," + auftrag.AttachmentNr);
+                            sw.Flush();
+                        }
+                        sw.WriteLine("VERSICHERUNG");
+                        foreach (TblVersicherung versicherung in this.Versicherungen)
+                        {
+                            sw.WriteLine(versicherung.VersicherungNr.ToString() + "," + versicherung.Name);
+                            sw.Flush();
+                        }
+                        sw.WriteLine("FABRIKAT");
+                        foreach (TblFabrikat fabrikat in this.Fabrikate)
+                        {
+                            sw.WriteLine(fabrikat.ID.ToString() + "," + fabrikat.Bezeichnung);
+                            sw.Flush();
+                        }
+                        sw.Close();
+                    }
+                }
+            }
         }
 
         
@@ -97,38 +136,25 @@ namespace MIS_TDP.DataModel.BusinessObjects
         /// </summary>
         public void XMLSerialize()
         {
-            Debug.WriteLine("CREATE XML FILE");
-            
-            XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
-            xmlWriterSettings.Indent = true;
-
-            using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
-                using (IsolatedStorageFileStream stream = myIsolatedStorage.OpenFile("BackupDB.xml", FileMode.Create))
+                Debug.WriteLine("CREATE XML FILE");
+
+                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                xmlWriterSettings.Indent = true;
+
+                using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(DataBaseReport));
-                    using (XmlWriter xmlWriter = XmlWriter.Create(stream, xmlWriterSettings))
+                    using (IsolatedStorageFileStream stream = myIsolatedStorage.OpenFile("BackupDB.xml", FileMode.Create))
                     {
-                        serializer.Serialize(xmlWriter, this);
+                        XmlSerializer serializer = new XmlSerializer(typeof(DataBaseReport));
+                        using (XmlWriter xmlWriter = XmlWriter.Create(stream, xmlWriterSettings))
+                        {
+                            serializer.Serialize(xmlWriter, this);
+                        }
                     }
                 }
             }
-
-            /**
-            // Glaube das hier sollte besser generisch sein....
-             XmlSerializer ser = new XmlSerializer(typeof(List<TblAuftrag>));
-            using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                using (IsolatedStorageFileStream stream = myIsolatedStorage.OpenFile("BackupDB.xml", FileMode.Create))
-                {
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<TblAuftrag>));
-                    using (XmlWriter xmlWriter = XmlWriter.Create(stream, xmlWriterSettings))
-                    {
-                        serializer.Serialize(xmlWriter, Aufträge);
-                    }
-                }
-            }
-             * */
         }
 
         public void XMLDeserialize()
@@ -141,7 +167,6 @@ namespace MIS_TDP.DataModel.BusinessObjects
                     {
                         XmlSerializer serializer = new XmlSerializer(typeof(DataBaseReport));
                         DataBaseReport data = (DataBaseReport)serializer.Deserialize(stream);
-                        
                     }
                 }
                 Debug.WriteLine("DataBaseReport Onject deserialized");
