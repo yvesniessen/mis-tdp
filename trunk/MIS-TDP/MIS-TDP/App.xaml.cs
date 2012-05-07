@@ -25,65 +25,25 @@ namespace MIS_TDP
         /// <returns>Der Stammframe der Phone-Anwendung.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
 
+        private DatabaseController databaseController;
+
         /// <summary>
         /// Konstruktor für das Application-Objekt.
         /// </summary>
         public App()
         {
-            //test für Basti
+            databaseController = DatabaseController.Instance;
+            DatabaseContext db = new DatabaseContext(DatabaseContext.ConnectionString);
 
-            DatabaseController databaseController = DatabaseController.Instance;
-            databaseController.CreateDatabase();
+            if (!db.DatabaseExists())
+            {
+                databaseController.CreateDatabase();
+                //Stammdaten anlegen
+                this.createMasterData();
 
-            DatabaseContext db = new DatabaseContext(DatabaseContext.ConnectionString);//new DatabaseContext(DatabaseContext.ConnectionString);
-
-            #region Stammdaten hinzufügen
-            TblFabrikat fab1 = new TblFabrikat();
-            fab1.Bezeichnung = "Mercedes";
-            databaseController.AddFabrikat(fab1);
-
-            TblFabrikat fab2 = new TblFabrikat();
-            fab2.Bezeichnung = "Porsche";
-            databaseController.AddFabrikat(fab2);
-
-            TblVersicherung ver1 = new TblVersicherung();
-            ver1.Name = "Aachen Münchener";
-            databaseController.AddVersicherung(ver1);
-
-            TblVersicherung ver2 = new TblVersicherung();
-            ver2.Name = "HUK";
-            databaseController.AddVersicherung(ver2);
-
-            #endregion
-
-
-            #region Testdaten hinzufügen
-            
-            TblAuftrag test = new TblAuftrag();
-            test.GeschaetzterSchaden = 500;
-            test.KfzKennzeichen = "AC-YN 1";
-            test.VersicherterVorname = "Heinz";
-            test.VersicherterName = "Peter";
-            test.TblFabrikat = databaseController.GetFabrikat(1);
-
-            databaseController.AddAuftrag(test);
-
-            TblAuftrag test1 = new TblAuftrag();
-            test1.AuftragNr = 213;
-            test1.GeschaetzterSchaden = 700;
-            test1.KfzKennzeichen = "AC-PP 2";
-            test1.VersicherterVorname = "Paul";
-            test1.VersicherterName = "Puemmel";
-            test1.TblFabrikat = databaseController.GetFabrikat(1);
-            databaseController.AddAuftrag(test1);
-
-            Debug.WriteLine(test1.TblFabrikat.Bezeichnung.ToString());
-            #endregion
-
-            //IList<Test> ausgabe = Controller.DatabaseController.GetEmployees();
-
-            //Console.WriteLine(ausgabe);
-
+                //Testdaten anlegen
+                this.createDummies();
+            }
 
             /**
             // Klassen instanzieren
@@ -201,5 +161,88 @@ namespace MIS_TDP
         }
 
         #endregion
+
+
+        List<TblFabrikat> fabrikate;
+        List<TblVersicherung> versicherungen;
+        private void createMasterData()
+        {
+            TblFabrikat fab;
+            TblVersicherung ver;
+
+            this.fabrikate = new List<TblFabrikat>();
+            this.versicherungen = new List<TblVersicherung>();
+
+
+            fab = new TblFabrikat();
+            fab.Bezeichnung = "Mercedes";
+            fabrikate.Add(fab);
+
+            fab = new TblFabrikat();
+            fab.Bezeichnung = "Porsche";
+            fabrikate.Add(fab);
+
+            fab = new TblFabrikat();
+            fab.Bezeichnung = "Volkswagen";
+            fabrikate.Add(fab);
+
+            fab = new TblFabrikat();
+            fab.Bezeichnung = "Audi";
+            fabrikate.Add(fab);
+
+            fab = new TblFabrikat();
+            fab.Bezeichnung = "Opel";
+            fabrikate.Add(fab);
+
+            fab = new TblFabrikat();
+            fab.Bezeichnung = "BMW";
+            fabrikate.Add(fab);
+
+            ver = new TblVersicherung();
+            ver.Name = "Aachen Münchener";
+            versicherungen.Add(ver);
+
+            ver = new TblVersicherung();
+            ver.Name = "HUK";
+            versicherungen.Add(ver);
+
+            ver = new TblVersicherung();
+            ver.Name = "Allianz";
+            versicherungen.Add(ver);
+
+            ver = new TblVersicherung();
+            ver.Name = "Provinzial";
+            versicherungen.Add(ver);
+
+
+            foreach (TblFabrikat f in this.fabrikate)
+                databaseController.AddFabrikat(f);
+
+            foreach (TblVersicherung v in this.versicherungen)
+                databaseController.AddVersicherung(v);
+
+        }
+
+        private void createDummies()
+        {
+            TblAuftrag test = new TblAuftrag();
+            test.GeschaetzterSchaden = 500;
+            test.KfzKennzeichen = "AC-YN 1";
+            test.VersicherterVorname = "Heinz";
+            test.VersicherterName = "Peter";
+            test.TblFabrikat = this.fabrikate[0];
+            test.TblVersicherung = this.versicherungen[0];
+
+            databaseController.AddAuftrag(test);
+
+            TblAuftrag test1 = new TblAuftrag();
+            test1.GeschaetzterSchaden = 700;
+            test1.KfzKennzeichen = "AC-PP 2";
+            test1.VersicherterVorname = "Paul";
+            test1.VersicherterName = "Puemmel";
+            test1.TblFabrikat = this.fabrikate[1];
+            test1.TblVersicherung = this.versicherungen[1];
+            databaseController.AddAuftrag(test1);
+        }
     }
 }

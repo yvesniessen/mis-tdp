@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Collections.Generic;
 using MIS_TDP.Controller;
 
 namespace MIS_TDP
@@ -17,11 +18,16 @@ namespace MIS_TDP
 
     public abstract class ViewModelBase : INotifyPropertyChanged, ICommand
     {
+        public virtual void Initialize(IDictionary<string, string> parameters)
+        {
+        }
+
         #region Public Member
 
         public DatabaseController databaseController = DatabaseController.Instance;
 
         #endregion
+
         #region INotifyPropertyChanged Implementation
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -62,5 +68,15 @@ namespace MIS_TDP
             }
         }
         #endregion
+
+        protected T GetService<T>() where T : class
+        {
+            if (typeof(T) == typeof(INavigationService))
+            {
+                return new SimpleNavigationService() as T;
+            }
+
+            return null;
+        }
     }
 }
