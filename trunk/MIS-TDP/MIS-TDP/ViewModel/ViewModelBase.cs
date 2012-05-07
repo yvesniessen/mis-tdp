@@ -10,12 +10,18 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Diagnostics;
+using MIS_TDP.Controller;
 
 namespace MIS_TDP
 {
 
     public abstract class ViewModelBase : INotifyPropertyChanged, ICommand
     {
+        #region Public Member
+
+        public DatabaseController databaseController = DatabaseController.Instance;
+
+        #endregion
         #region INotifyPropertyChanged Implementation
 
         public event PropertyChangedEventHandler PropertyChanged;

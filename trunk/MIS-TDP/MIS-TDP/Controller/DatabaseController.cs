@@ -20,13 +20,30 @@ using System.Xml;
 namespace MIS_TDP.Controller
 {
   
-    public static class DatabaseController
+    public class DatabaseController
     {
+        
+
+        //Singleton Instanz
+        private static DatabaseController instance;
+
+        public static DatabaseController Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new DatabaseController();
+                }
+                return instance;
+            }
+        }
+
         private const string ConnectionString = @"isostore:/Database.sdf";
 
         #region Hilfsfunktionen
 
-        private static ObservableCollection<T> toObservableCollection<T>(IEnumerable<T> enumerable)
+        private  ObservableCollection<T> toObservableCollection<T>(IEnumerable<T> enumerable)
         {
 
             var col = new ObservableCollection<T>();
@@ -41,9 +58,9 @@ namespace MIS_TDP.Controller
 
         #region Generelle Datenbank-Befehle (create delete Report)
 
-        public static void CreateDatabase()
+        public void CreateDatabase()
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString)) //new DatabaseContext(ConnectionString))
             {
                 if (!context.DatabaseExists())
                 {
@@ -54,9 +71,9 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void DeleteDatabase()
+        public void DeleteDatabase()
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -74,13 +91,13 @@ namespace MIS_TDP.Controller
         }
         **/
 
-        public static void ReportDatabase()
+        public void ReportDatabase()
         {
             Debug.WriteLine("Database-Report");
             DataBaseReport result = new DataBaseReport();
-            result.Aufträge = GetAuftraege().ToList<TblAuftrag>();          
-            result.Attachments = GetAttachments().ToList<TblAttachment>();          
-            result.Versicherungen = GetVersicherungen().ToList<TblVersicherung>();          
+            //result.Aufträge = GetAuftraege().ToList<TblAuftrag>();          
+            //result.Attachments = GetAttachments().ToList<TblAttachment>();          
+            //result.Versicherungen = GetVersicherungen().ToList<TblVersicherung>();          
             result.Fabrikate = GetFabrikate().ToList<TblFabrikat>();
             
 
@@ -101,22 +118,22 @@ namespace MIS_TDP.Controller
         /// <param name="writer">The writer.</param>
         /// <param name="elementName">Name of the element.</param>
         /// <param name="element">The element.</param>
-        public static void SaveXmlSerialiableElement<T>(this XmlWriter writer, String elementName, T element) where T : IXmlSerializable
+        /*public void SaveXmlSerialiableElement<T>(this XmlWriter writer, String elementName, T element) where T : IXmlSerializable
         {
             writer.WriteStartElement(elementName);
             writer.WriteAttributeString("TYPE", element.GetType().AssemblyQualifiedName);
             element.WriteXml(writer);
             writer.WriteEndElement();
-        }
+        }*/
         #endregion
 
         #endregion
 
         #region Funktionen für Anhänge (add, update,delete,get,getAll)
 
-        public static void AddAttachment(TblAttachment attachment)
+        public void AddAttachment(TblAttachment attachment)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -126,9 +143,9 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void UpdateAttachment(TblAttachment attachment)
+        public void UpdateAttachment(TblAttachment attachment)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -136,7 +153,6 @@ namespace MIS_TDP.Controller
                     var attach = (from a in context.TblAttachment
                                   where a.AttachmentNr == attachment.AttachmentNr
                                   select a).Single();
-                    attach.AuftragNr = attachment.AuftragNr;
                     attach.Data = attachment.Data;
 
                     context.SubmitChanges();
@@ -144,9 +160,9 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void DeleteAttachment(TblAttachment Attachment)
+        public void DeleteAttachment(TblAttachment Attachment)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -156,28 +172,28 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void DeleteAttachment(int AttachmentNr)
+        public void DeleteAttachment(int AttachmentNr)
         {
             TblAttachment attachment = GetAttachment(AttachmentNr);
 
             DeleteAttachment(attachment);
         }
 
-        public static ObservableCollection<TblAttachment> GetAttachments()
+        public ObservableCollection<TblAttachment> GetAttachments()
         {
             IList<TblAttachment> attachments;
 
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 attachments = (from tblAttachment in context.TblAttachment select tblAttachment).ToList();
             }
             return toObservableCollection<TblAttachment>(attachments);
         }
 
-        public static TblAttachment GetAttachment(int AttachmentID)
+        public TblAttachment GetAttachment(int AttachmentID)
         {
             TblAttachment attachment;
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
                 attachment = (from tblAttachment in context.TblAttachment
@@ -191,11 +207,11 @@ namespace MIS_TDP.Controller
 
         #region Funktionen für Aufträge (add, update,delete,get,getAll)
 
-        public static void AddAuftrag(TblAuftrag auftrag)
+        public void AddAuftrag(TblAuftrag auftrag)
         {
             auftrag.Datum = DateTime.Now;
 
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -205,9 +221,9 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void UpdateAuftrag(TblAuftrag auftrag)
+        public void UpdateAuftrag(TblAuftrag auftrag)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -227,9 +243,9 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void DeleteAuftrag(TblAuftrag Auftrag)
+        public void DeleteAuftrag(TblAuftrag Auftrag)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -239,7 +255,7 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void DeleteAuftrag(int AuftragNr)
+        public void DeleteAuftrag(int AuftragNr)
         {
             TblAuftrag auftrag = GetAuftrag(AuftragNr);
 
@@ -247,21 +263,21 @@ namespace MIS_TDP.Controller
         }
 
 
-        public static ObservableCollection<TblAuftrag> GetAuftraege()
+        public ObservableCollection<TblAuftrag> GetAuftraege()
         {
             List<TblAuftrag> auftraege = new List<TblAuftrag>();
 
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 auftraege = (from tblAuftrag in context.TblAuftrag select tblAuftrag).ToList();
             }
             return toObservableCollection<TblAuftrag>(auftraege);
         }
 
-        public static TblAuftrag GetAuftrag(int AuftragNr)
+        public TblAuftrag GetAuftrag(int AuftragNr)
         {
             TblAuftrag auftrag;
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
                 auftrag = (from tblAuftrag in context.TblAuftrag
@@ -275,9 +291,9 @@ namespace MIS_TDP.Controller
 
         #region Funktionen für Versicherungen (add, update,delete,get,getAll)
 
-        public static void AddVersicherung(TblVersicherung versicherung)
+        public void AddVersicherung(TblVersicherung versicherung)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -287,9 +303,9 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void UpdateVersicherung(TblVersicherung versicherung)
+        public void UpdateVersicherung(TblVersicherung versicherung)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -304,9 +320,9 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void DeleteVersicherung(TblVersicherung Versicherung)
+        public void DeleteVersicherung(TblVersicherung Versicherung)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -316,32 +332,33 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void DeleteVersicherung(int VersicherungNr)
+        public void DeleteVersicherung(int VersicherungNr)
         {
             TblVersicherung versicherung = GetVersicherung(VersicherungNr);
 
             DeleteVersicherung(versicherung);
         }
 
-        public static ObservableCollection<TblVersicherung> GetVersicherungen()
+        public ObservableCollection<TblVersicherung> GetVersicherungen()
         {
             IList<TblVersicherung> versicherungen;
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 versicherungen = (from tblVersicherung in context.TblVersicherung select tblVersicherung).ToList();
             }
             return toObservableCollection<TblVersicherung>(versicherungen);
         }
 
-        public static TblVersicherung GetVersicherung(int VersicherungsNr)
+        public TblVersicherung GetVersicherung(int VersicherungsNr)
         {
             TblVersicherung versicherung;
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
                 versicherung = (from tblVersicherung in context.TblVersicherung
                                 where tblVersicherung.VersicherungNr == VersicherungsNr
                                 select tblVersicherung).Single();
+                
             }
             return versicherung;
         }
@@ -349,9 +366,9 @@ namespace MIS_TDP.Controller
 
         #region Funktionen für Fabrikate (add, update, delete, get, getAll)
 
-        public static void AddFabrikat(TblFabrikat fabrikat)
+        public void AddFabrikat(TblFabrikat fabrikat)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -361,9 +378,9 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void UpdateFabrikat(TblFabrikat fabrikat)
+        public void UpdateFabrikat(TblFabrikat fabrikat)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -378,9 +395,9 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void DeleteFabrikat(TblFabrikat fabrikat)
+        public void DeleteFabrikat(TblFabrikat fabrikat)
         {
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 if (context.DatabaseExists())
                 {
@@ -390,27 +407,27 @@ namespace MIS_TDP.Controller
             }
         }
 
-        public static void DeleteFabrikat(int FabrikatID)
+        public void DeleteFabrikat(int FabrikatID)
         {
             TblFabrikat fabrikat = GetFabrikat(FabrikatID);
 
             DeleteFabrikat(fabrikat);
         }
 
-        public static ObservableCollection<TblFabrikat> GetFabrikate()
+        public ObservableCollection<TblFabrikat> GetFabrikate()
         {
             IList<TblFabrikat> fabrikate;
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 fabrikate = (from tblFabrikat in context.TblFabrikat select tblFabrikat).ToList();
             }
             return toObservableCollection<TblFabrikat>(fabrikate);
         }
 
-        public static TblFabrikat GetFabrikat(int FabrikatID)
+        public TblFabrikat GetFabrikat(int FabrikatID)
         {
             TblFabrikat fabrikat;
-            using (var context = new DatabaseContext(ConnectionString))
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 //Da identifier in where klausel geprüft darf nur einer vorkommen somit .Single()
                 fabrikat = (from tblFabrikat in context.TblFabrikat
@@ -425,7 +442,7 @@ namespace MIS_TDP.Controller
         #region Testfunktionen
 
 
-        //public static void AddEmployee(Test testdaten)
+        //public void AddEmployee(Test testdaten)
         //{
 
         //    using (var context = new DatabaseContext(ConnectionString))
@@ -446,7 +463,7 @@ namespace MIS_TDP.Controller
 
 
 
-        //public static IList<Test> GetEmployees()
+        //public IList<Test> GetEmployees()
         //{
 
         //    IList<Test> Testdaten;

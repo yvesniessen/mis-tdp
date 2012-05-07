@@ -17,6 +17,8 @@
         <local:FabrikateViewModel x:Key="FabrikateViewModel" />
         <local:VersicherungViewModel x:Key="VersicherungViewModel" />
         <local:VersicherungenViewModel x:Key="VersicherungenViewModel" />
+        <local:TestPage3ViewModel x:Key="TestPage3ViewModel" />
+
     </Application.Resources>
 
 

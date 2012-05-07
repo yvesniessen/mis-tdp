@@ -32,8 +32,8 @@ namespace MIS_TDP.DataModel.BusinessObjects
         /// <value>
         /// The aufträge.
         /// </value>
-        [XmlElement("Auftraege")]
-        public List<TblAuftrag> Aufträge { get; set; }
+        //[XmlElement("Auftraege")]
+        //public List<TblAuftrag> Aufträge { get; set; }
 
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace MIS_TDP.DataModel.BusinessObjects
         /// <value>
         /// The versicherungen.
         /// </value>
-        [XmlElement("Versicherungen")]
-        public List<TblVersicherung> Versicherungen { get; set; }
+        //[XmlElement("Versicherungen")]
+        //public List<TblVersicherung> Versicherungen { get; set; }
 
         /// <summary>
         /// Gets or sets the attachments.
@@ -51,8 +51,8 @@ namespace MIS_TDP.DataModel.BusinessObjects
         /// <value>
         /// The attachments.
         /// </value>
-        [XmlElement("Attachments")]
-        public List<TblAttachment> Attachments { get; set; }
+        //[XmlElement("Attachments")]
+        //public List<TblAttachment> Attachments { get; set; }
 
         /// <summary>
         /// Gets or sets the fabrikate.
@@ -62,6 +62,13 @@ namespace MIS_TDP.DataModel.BusinessObjects
         /// </value>
         [XmlElement("Fabrikate")]
         public List<TblFabrikat> Fabrikate { get; set; }
+
+
+        public DataBaseReport()
+        {
+            Fabrikate = new List<TblFabrikat>();
+        }
+
         #endregion
 
         #region public properties
@@ -82,6 +89,8 @@ namespace MIS_TDP.DataModel.BusinessObjects
         {
 
         }
+
+        
 
         /// <summary>
         /// XMLs the serialize.
