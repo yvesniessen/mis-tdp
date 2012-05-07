@@ -83,31 +83,30 @@ namespace MIS_TDP.Controller
         }
 
         #region Database Reporting
-        /**
-        public void ReportDatabaseHandler(object sender, EventArgs e)
-        {
-            ReportDatabase();
-        }
-        **/
 
         public void ReportDatabase()
         {
-            Debug.WriteLine("Database-Report");
-            DataBaseReport result = new DataBaseReport();
-            //result.Aufträge = GetAuftraege().ToList<TblAuftrag>();          
-            //result.Attachments = GetAttachments().ToList<TblAttachment>();          
-            //result.Versicherungen = GetVersicherungen().ToList<TblVersicherung>();          
-            result.Fabrikate = GetFabrikate().ToList<TblFabrikat>();
-            
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
+            {
+                Debug.WriteLine("Database-Report");
+                DataBaseReport result = new DataBaseReport();
+                result.Aufträge = (from a in context.TblAuftrag select a).ToList<TblAuftrag>();
+                result.Attachments = (from a in context.TblAttachment select a).ToList<TblAttachment>();
+                result.Versicherungen = (from a in context.TblVersicherung select a).ToList<TblVersicherung>();
+                result.Fabrikate = (from a in context.TblFabrikat select a).ToList<TblFabrikat>();
+                result.XMLSerialize();
+            }
 
-     
-            //XmlSerializer serializer = new XmlSerializer(typeof(DataBaseReport));
-            //FileStream fs = new FileStream("Personenliste.xml", FileMode.Create);
-            //serializer.Serialize(fs, result);
-            //fs.Close(); 
-            //ser.Serialize(Console.Out, result);
-             result.XMLSerialize();
-            //return result;
+            using (var context = new DatabaseContext(DatabaseContext.ConnectionString))
+            {
+                Debug.WriteLine("Database-Report");
+                DataBaseReport result = new DataBaseReport();
+                result.Aufträge = (from a in context.TblAuftrag select a).ToList<TblAuftrag>();
+                result.Attachments = (from a in context.TblAttachment select a).ToList<TblAttachment>();
+                result.Versicherungen = (from a in context.TblVersicherung select a).ToList<TblVersicherung>();
+                result.Fabrikate = (from a in context.TblFabrikat select a).ToList<TblFabrikat>();
+                result.CSVSerialize();
+            }
         }
 
         /// <summary>
