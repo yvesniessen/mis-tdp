@@ -51,7 +51,7 @@
 						</i:EventTrigger>
 					</i:Interaction.Triggers>
 				</Button>
-                <toolkit:ListPicker x:Name="VersicherungListPicker" Margin="8,123,8,0" VerticalAlignment="Top" Height="52" ItemsSource="{Binding Versicherungen}" FontFamily="Segoe WP Semibold" UseLayoutRounding="True" SelectedItem="{Binding Item.VersicherungNr}" DataContext="{Binding}">
+                <toolkit:ListPicker x:Name="VersicherungListPicker" Margin="8,123,8,0" VerticalAlignment="Top" Height="52" ItemsSource="{Binding Versicherungen}" FontFamily="Segoe WP Semibold" UseLayoutRounding="True" SelectedItem="{Binding }" DataContext="{Binding}">
 					<toolkit:ListPicker.FullModeItemTemplate>  
 						<DataTemplate>
 							<StackPanel Orientation="Vertical">

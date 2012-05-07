@@ -33,7 +33,7 @@ namespace MIS_TDP
 
         private void loadDBData()
         {
-            this.items = Controller.DatabaseController.GetAuftraege();
+            this.items = databaseController.GetAuftraege();
         }
 
 

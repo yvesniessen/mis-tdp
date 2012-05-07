@@ -57,7 +57,7 @@ namespace MIS_TDP
             TblVersicherung neueVersicherung = new TblVersicherung();
             neueVersicherung = item;
 
-            Controller.DatabaseController.AddVersicherung(neueVersicherung);
+            databaseController.AddVersicherung(neueVersicherung);
         }
 
         #endregion

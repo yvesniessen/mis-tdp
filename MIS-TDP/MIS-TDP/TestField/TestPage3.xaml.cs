@@ -23,7 +23,7 @@ namespace MIS_TDP.TestField
 
         private void hyperlinkButton1_Click(object sender, RoutedEventArgs e)
         {
-            DatabaseController.ReportDatabase();
+           // DatabaseController.ReportDatabase();
         }
     }
 }

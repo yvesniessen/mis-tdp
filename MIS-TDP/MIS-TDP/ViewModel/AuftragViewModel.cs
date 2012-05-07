@@ -21,9 +21,9 @@ namespace MIS_TDP
             //this.loadSampleData();
 
          //Todo: nur Testdaten, hier muss entsprechende ID des Auftrags geladen werden mit dem Page aufgerufen wurde
-            this.item = Controller.DatabaseController.GetAuftrag(1);
-            this.Versicherungen = Controller.DatabaseController.GetVersicherungen();
-            this.Fabrikate = Controller.DatabaseController.GetFabrikate();
+            this.item = databaseController.GetAuftrag(1);
+            this.Versicherungen = databaseController.GetVersicherungen();
+            this.Fabrikate = databaseController.GetFabrikate();
         }
 
         private void loadSampleData()
@@ -93,7 +93,7 @@ namespace MIS_TDP
             TblAuftrag neuerAuftrag  = new TblAuftrag();
             neuerAuftrag = item;
 
-            Controller.DatabaseController.AddAuftrag(neuerAuftrag);
+            databaseController.AddAuftrag(neuerAuftrag);
         }
 
         #endregion

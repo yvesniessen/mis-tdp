@@ -51,7 +51,7 @@
                 TblFabrikat neuesFabrikat = new TblFabrikat();
                 neuesFabrikat = item;
 
-                Controller.DatabaseController.AddFabrikat(neuesFabrikat);
+                databaseController.AddFabrikat(neuesFabrikat);
             }
 
             #endregion

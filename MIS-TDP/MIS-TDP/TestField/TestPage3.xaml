@@ -22,7 +22,7 @@
     
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{Binding Source={StaticResource TestPage3ViewModel}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -39,6 +39,19 @@
             <Button Content="XML-Export" Height="76" HorizontalAlignment="Left" Margin="12,23,0,0" Name="hyperlinkButton1" VerticalAlignment="Top" Width="200" Click="hyperlinkButton1_Click" >
 
             </Button>
+
+            <Button Content="Senden" HorizontalAlignment="Left" Margin="200,0,0,30" VerticalAlignment="Bottom" Width="210" Height="210" VerticalContentAlignment="Bottom" Padding="10,3,10,0" BorderBrush="{x:Null}" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:CallMethodAction MethodName="ExportToCsv"  TargetObject="{Binding}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Button.Background>
+                    <ImageBrush ImageSource="/MIS-TDP;component/Ressourcen/Senden.png" />
+                </Button.Background>
+            </Button>
+            
+            
         </Grid>
     </Grid>
  

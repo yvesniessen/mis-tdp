@@ -80,8 +80,8 @@
     <Compile Include="Controller\DatabaseController.cs" />
     <Compile Include="Controller\MailController.cs" />
     <Compile Include="ConvertibleTypeConverter.cs" />
-    <Compile Include="DataModel\BusinessObjects\DataBaseReport.cs" />
     <Compile Include="DataModel\DatabaseContext.cs" />
+    <Compile Include="DataModel\BusinessObjects\DataBaseReport.cs" />
     <Compile Include="DataModel\DataModelBase.cs" />
     <Compile Include="DataModel\DataModelExample.cs" />
     <Compile Include="DataModel\DebugWriter.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="TestField\TestPage3.xaml.cs">
       <DependentUpon>TestPage3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestField\TestPage3ViewModel.cs" />
     <Compile Include="View\VersicherungPage.xaml.cs">
       <DependentUpon>VersicherungPage.xaml</DependentUpon>
     </Compile>

@@ -12,6 +12,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using MIS_TDP.Controller;
+using System.Diagnostics;
 
 namespace MIS_TDP
 {
@@ -29,50 +31,53 @@ namespace MIS_TDP
         public App()
         {
             //test für Basti
-            
-            Controller.DatabaseController.CreateDatabase();
+
+            DatabaseController databaseController = DatabaseController.Instance;
+            databaseController.CreateDatabase();
+
+            DatabaseContext db = new DatabaseContext(DatabaseContext.ConnectionString);//new DatabaseContext(DatabaseContext.ConnectionString);
 
             #region Stammdaten hinzufügen
             TblFabrikat fab1 = new TblFabrikat();
             fab1.Bezeichnung = "Mercedes";
-            Controller.DatabaseController.AddFabrikat(fab1);
+            databaseController.AddFabrikat(fab1);
 
             TblFabrikat fab2 = new TblFabrikat();
-            fab1.Bezeichnung = "Porsche";
-            Controller.DatabaseController.AddFabrikat(fab1);
+            fab2.Bezeichnung = "Porsche";
+            databaseController.AddFabrikat(fab2);
 
             TblVersicherung ver1 = new TblVersicherung();
             ver1.Name = "Aachen Münchener";
-            Controller.DatabaseController.AddVersicherung(ver1);
+            databaseController.AddVersicherung(ver1);
 
             TblVersicherung ver2 = new TblVersicherung();
             ver2.Name = "HUK";
-            Controller.DatabaseController.AddVersicherung(ver2);
+            databaseController.AddVersicherung(ver2);
 
             #endregion
 
 
             #region Testdaten hinzufügen
-
+            
             TblAuftrag test = new TblAuftrag();
             test.GeschaetzterSchaden = 500;
             test.KfzKennzeichen = "AC-YN 1";
             test.VersicherterVorname = "Heinz";
             test.VersicherterName = "Peter";
-            test.TblFabrikat = fab1;
-            test.TblVersicherung = ver1;
+            test.TblFabrikat = databaseController.GetFabrikat(1);
 
-            Controller.DatabaseController.AddAuftrag(test);
+            databaseController.AddAuftrag(test);
 
             TblAuftrag test1 = new TblAuftrag();
+            test1.AuftragNr = 213;
             test1.GeschaetzterSchaden = 700;
             test1.KfzKennzeichen = "AC-PP 2";
             test1.VersicherterVorname = "Paul";
             test1.VersicherterName = "Puemmel";
-            test1.TblFabrikat = fab2;
-            test1.TblVersicherung = ver1;
-            Controller.DatabaseController.AddAuftrag(test1);
+            test1.TblFabrikat = databaseController.GetFabrikat(1);
+            databaseController.AddAuftrag(test1);
 
+            Debug.WriteLine(test1.TblFabrikat.Bezeichnung.ToString());
             #endregion
 
             //IList<Test> ausgabe = Controller.DatabaseController.GetEmployees();
