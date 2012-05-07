@@ -25,7 +25,7 @@ namespace MIS_TDP
 
         public void loadDBData()
         {
-            this.items = databaseController.GetVersicherungen();
+            this.Items = databaseController.GetVersicherungen();
         }
 
         #endregion

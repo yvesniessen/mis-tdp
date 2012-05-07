@@ -26,5 +26,10 @@ namespace MIS_TDP
             Uri uri = new System.Uri("/MIS-TDP;component/View/VersicherungPage.xaml", System.UriKind.Relative);
             this.NavigationService.Navigate(uri);
         }
+
+        private void ApplicationBarButtonUpdateClick(object sender, System.EventArgs e)
+        {
+            (DataContext as VersicherungenViewModel).loadDBData();
+        }
     }
 }
