@@ -41,7 +41,7 @@
                     </i:Interaction.Triggers>
                 </Button>
                 <TextBlock Margin="10,0" TextWrapping="Wrap" Text="Auftragsnummer" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
-				<TextBox x:Name="AuftragsnummerTextBox" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.AuftragNr, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number" />
+				<TextBox x:Name="AuftragsnummerTextBox" IsEnabled="False" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.AuftragNr, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number" />
 				<TextBlock Margin="10,280,10,300" TextWrapping="Wrap" Text="Kraftfahrzeug" Style="{StaticResource PhoneTextNormalStyle}" d:LayoutOverrides="Height"/>
                 <Button x:Name="KraftfahrzeugButton" Content="{Binding Item.KfzKennzeichen}" Margin="-6,298,-6,237" Background="#BFFFFFFF" Foreground="Black" Padding="10,3,10,5" BorderBrush="{x:Null}" HorizontalContentAlignment="Left">
 					<i:Interaction.Triggers>
