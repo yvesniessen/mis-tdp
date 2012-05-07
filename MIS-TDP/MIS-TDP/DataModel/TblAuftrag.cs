@@ -146,6 +146,18 @@ public partial class TblAuftrag : INotifyPropertyChanging, INotifyPropertyChange
 			}
 		}
 	}
+
+    public string Versicherter
+    {
+        get
+        {
+            if (this.VersicherterVorname != null)
+                return this.VersicherterName + ", " + this.VersicherterVorname;
+            else if (this.VersicherterName != null)
+                return this.VersicherterName;
+            else return "KEIN_Name";
+        }
+    }
 	
 	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="versicherterVorname", Storage="_VersicherterVorname", DbType="NVarChar(100)")]
 	public string VersicherterVorname

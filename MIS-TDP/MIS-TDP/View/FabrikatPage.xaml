@@ -39,7 +39,7 @@
 				</i:Interaction.Triggers>
 			</Button>
 			<TextBlock Margin="10,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"><Run Text="Fabrikatnummer"/><LineBreak/><Run/></TextBlock>
-			<TextBox x:Name="FabrikatnummerTextBox" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.ID, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number" IsEnabled="False" />
+			<TextBox x:Name="FabrikatnummerTextBox" IsEnabled="False" Margin="-5,19,-5,0" TextWrapping="Wrap" Text="{Binding Item.ID, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="Number" />
 			<TextBlock Margin="10,92,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"><Run Text="Bezeichnung"/><LineBreak/><Run/></TextBlock>
 			<TextBox x:Name="BezeichnungTextBox_Copy" Margin="-5,111,-5,0" TextWrapping="Wrap" Text="{Binding Item.Bezeichnung, Mode=TwoWay}" VerticalAlignment="Top" Padding="0"/>
 		</Grid>
