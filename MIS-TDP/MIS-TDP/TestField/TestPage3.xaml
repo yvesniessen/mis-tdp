@@ -36,14 +36,10 @@
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Content="XML-Export" Height="76" HorizontalAlignment="Left" Margin="12,23,0,0" Name="hyperlinkButton1" VerticalAlignment="Top" Width="200" Click="hyperlinkButton1_Click" >
-
-            </Button>
-
-            <Button Content="Senden" HorizontalAlignment="Left" Margin="200,0,0,30" VerticalAlignment="Bottom" Width="210" Height="210" VerticalContentAlignment="Bottom" Padding="10,3,10,0" BorderBrush="{x:Null}" >
+            <Button Content="Export DB" HorizontalAlignment="Left" Margin="200,0,0,30" VerticalAlignment="Bottom" Width="210" Height="210" VerticalContentAlignment="Bottom" Padding="10,3,10,0" BorderBrush="{x:Null}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:CallMethodAction MethodName="ExportToCsv"  TargetObject="{Binding}" />
+                        <ec:CallMethodAction MethodName="ExportToCsvAndXml"  TargetObject="{Binding}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <Button.Background>

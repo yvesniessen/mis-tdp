@@ -20,10 +20,5 @@ namespace MIS_TDP.TestField
         {
             InitializeComponent();
         }
-
-        private void hyperlinkButton1_Click(object sender, RoutedEventArgs e)
-        {
-           // DatabaseController.ReportDatabase();
-        }
     }
 }
