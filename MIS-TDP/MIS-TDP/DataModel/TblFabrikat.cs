@@ -93,7 +93,7 @@ public partial class TblFabrikat : INotifyPropertyChanging, INotifyPropertyChang
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_KFZFabrikatNr", Storage="_TblAuftrag", ThisKey="ID", OtherKey="KfzFabrikatNr", DeleteRule="CASCADE")]
+	/*[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_KFZFabrikatNr", Storage="_TblAuftrag", ThisKey="ID", OtherKey="KfzFabrikatNr", DeleteRule="CASCADE")]
 	public EntitySet<TblAuftrag> TblAuftrag
 	{
 		get
@@ -104,7 +104,7 @@ public partial class TblFabrikat : INotifyPropertyChanging, INotifyPropertyChang
 		{
 			this._TblAuftrag.Assign(value);
 		}
-	}
+	}*/
 	
 	public event PropertyChangingEventHandler PropertyChanging;
 	

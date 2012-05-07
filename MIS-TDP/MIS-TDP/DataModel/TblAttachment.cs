@@ -117,7 +117,7 @@ public partial class TblAttachment : INotifyPropertyChanging, INotifyPropertyCha
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_AttachmentNr", Storage="_TblAuftrag", ThisKey="AttachmentNr", OtherKey="AttachmentNr", DeleteRule="CASCADE")]
+	/*[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_AttachmentNr", Storage="_TblAuftrag", ThisKey="AttachmentNr", OtherKey="AttachmentNr", DeleteRule="CASCADE")]
 	public EntitySet<TblAuftrag> TblAuftrag
 	{
 		get
@@ -128,7 +128,7 @@ public partial class TblAttachment : INotifyPropertyChanging, INotifyPropertyCha
 		{
 			this._TblAuftrag.Assign(value);
 		}
-	}
+	}*/
 	
 	public event PropertyChangingEventHandler PropertyChanging;
 	

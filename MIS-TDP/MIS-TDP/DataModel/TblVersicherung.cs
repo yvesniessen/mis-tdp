@@ -93,7 +93,7 @@ public partial class TblVersicherung : INotifyPropertyChanging, INotifyPropertyC
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_VersicherungNR", Storage="_TblAuftrag", ThisKey="VersicherungNr", OtherKey="VersicherungNr", DeleteRule="CASCADE")]
+	/*[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_VersicherungNR", Storage="_TblAuftrag", ThisKey="VersicherungNr", OtherKey="VersicherungNr", DeleteRule="CASCADE")]
 	public EntitySet<TblAuftrag> TblAuftrag
 	{
 		get
@@ -104,7 +104,7 @@ public partial class TblVersicherung : INotifyPropertyChanging, INotifyPropertyC
 		{
 			this._TblAuftrag.Assign(value);
 		}
-	}
+	}*/
 	
 	public event PropertyChangingEventHandler PropertyChanging;
 	

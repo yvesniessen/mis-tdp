@@ -288,12 +288,12 @@ public partial class TblAuftrag : INotifyPropertyChanging, INotifyPropertyChange
 				if ((previousValue != null))
 				{
 					this._TblAttachment.Entity = null;
-					previousValue.TblAuftrag.Remove(this);
+					//previousValue.TblAuftrag.Remove(this);
 				}
 				this._TblAttachment.Entity = value;
 				if ((value != null))
 				{
-					value.TblAuftrag.Add(this);
+					//value.TblAuftrag.Add(this);
 					this._AttachmentNr = value.AttachmentNr;
 				}
 				else
@@ -322,12 +322,12 @@ public partial class TblAuftrag : INotifyPropertyChanging, INotifyPropertyChange
 				if ((previousValue != null))
 				{
 					this._TblFabrikat.Entity = null;
-					previousValue.TblAuftrag.Remove(this);
+					//previousValue.TblAuftrag.Remove(this);
 				}
 				this._TblFabrikat.Entity = value;
 				if ((value != null))
 				{
-					value.TblAuftrag.Add(this);
+					//value.TblAuftrag.Add(this);
 					this._KfzFabrikatNr = value.ID;
 				}
 				else
@@ -356,12 +356,12 @@ public partial class TblAuftrag : INotifyPropertyChanging, INotifyPropertyChange
 				if ((previousValue != null))
 				{
 					this._TblVersicherung.Entity = null;
-					previousValue.TblAuftrag.Remove(this);
+					//previousValue.TblAuftrag.Remove(this);
 				}
 				this._TblVersicherung.Entity = value;
 				if ((value != null))
 				{
-					value.TblAuftrag.Add(this);
+					//value.TblAuftrag.Add(this);
 					this._VersicherungNr = value.VersicherungNr;
 				}
 				else
