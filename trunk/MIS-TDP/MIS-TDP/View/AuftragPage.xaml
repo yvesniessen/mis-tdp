@@ -95,12 +95,17 @@
 						</i:EventTrigger>
 					</i:Interaction.Triggers>
 				</es:BlockArrow>
-				<TextBlock Margin="10,115,10,0" TextWrapping="Wrap" Text="Vorname" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
-                <TextBox x:Name="VornameTextBox" Margin="-5,134,-5,0" TextWrapping="Wrap" Text="{Binding Item.VersicherterVorname, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="PersonalGivenName"/>
-                <TextBlock Margin="10,199,10,0" TextWrapping="Wrap" Text="Nachname" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
-                <TextBox x:Name="NachnameTextBox" Margin="-5,218,-5,0" TextWrapping="Wrap" Text="{Binding Item.VersicherterName, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="PersonalGivenName"/>
+                
+				<TextBlock Margin="10,15,10,0" TextWrapping="Wrap" Text="Vorname" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
+                <TextBox x:Name="VornameTextBox" Margin="-5,34,-5,0" TextWrapping="Wrap" Text="{Binding Item.VersicherterVorname, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="PersonalGivenName"/>
+                <TextBlock Margin="10,99,10,0" TextWrapping="Wrap" Text="Nachname" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" RenderTransformOrigin="0.478,0.5" Padding="0"/>
+                <TextBox x:Name="NachnameTextBox" Margin="-5,118,-5,0" TextWrapping="Wrap" Text="{Binding Item.VersicherterName, Mode=TwoWay}" VerticalAlignment="Top" Padding="0" InputScope="PersonalGivenName"/>
+
+                <Button x:Name="choosePhoneNumber" Margin="0, 240,-5,0" Height="75" Width="200" Content="Auswählen" VerticalAlignment="Top" Padding="0" HorizontalAlignment="Left" Click="choosePhoneNumber_Click"/>
+                <Button x:Name="callPhoneNumber" Margin="0, 240,-5,0" Height="75" Width="200" Content="Call" VerticalAlignment="Top" Padding="0" HorizontalAlignment="Right" Click="callPhoneNumber_Click"/>
             </Grid>
         </controls:PivotItem>
+        
 		<controls:PivotItem Header="kraftfahrzeug">
 			<Grid>
 				<es:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="60" Margin="10,0,0,20" Orientation="Left" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="100">
